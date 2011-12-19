@@ -6,3 +6,14 @@ e-mail：huangjunkun@gmail.com
 
 欢迎交流，谢谢！
 
+
+1.
+
+/**
+** 源文件： random_list_node.h, random_list_node_test.cpp
+** 功能：拷贝“随机链表”，即节点带有一个指针可能指向链表随机另一个节点的链表。
+** 一般的简单蛮力算法，可完成该功能，但时间复杂度为 O(n*m)。而以下算法较高效，相比时间复杂度为O(m).
+** 具体操作，需要遍历源链表三遍。包括拷贝链表+复制随机指针+回复源链表NEXT指针。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 日期：2011-06-10 /
+*/
