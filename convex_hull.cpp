@@ -11,7 +11,7 @@ int main()
 {
     time_t t;
     srand(time(&t));
-    const int POINTNUM = 10;
+    const int POINTNUM = 100;
     const int SIDE = 20;
 
     TPoint  *points = new TPoint[POINTNUM];
@@ -40,7 +40,8 @@ int main()
             // 标识points[k] 落在两点points[i], points[j] 哪一边.
             // 0 表示未知, 1 表示右边或同一条线上， -1 表示左边.
             int flag = 0;
-            for (int k=0; k<POINTNUM; k++)
+            int k = 0;
+            for (; k<POINTNUM; k++)
                 if (k != i && k != j)
                 {
                     // ... points[i] points[j] points[k] 存在相同点问题 ...
