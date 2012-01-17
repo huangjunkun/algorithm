@@ -16,7 +16,7 @@ int main()
 
     TPoint  *points = new TPoint[POINTNUM];
     //vector<TPoint>  points(POINTNUM;
-    for(int i=0; i<POINTNUM; i++)
+    for (int i=0; i<POINTNUM; i++)
     {
         points[i].x = rand()%SIDE;
         points[i].y = rand()%SIDE;
@@ -31,40 +31,39 @@ int main()
     ///*
     vector<PointPair>  selPointPairs;
 // --------------- 蛮力法 ------------
-    for(int i=0; i<POINTNUM; i++)
-        for(int j=i+1; j<POINTNUM; j++)
+    for (int i=0; i<POINTNUM; i++)
+        for (int j=i+1; j<POINTNUM; j++)
         {
             int a=points[j].y-points[i].y;
             int b=points[i].x-points[j].x;
             int c=points[i].x*points[j].y-points[i].y*points[j].x;
-            int     k, flag = 0;
-            for(k=0; k<POINTNUM; k++)
-                if(k!=i&&k!=j)
+            // 标识points[k] 落在两点points[i], points[j] 哪一边.
+            // 0 表示未知, 1 表示右边或同一条线上， -1 表示左边.
+            int flag = 0;
+            for (int k=0; k<POINTNUM; k++)
+                if (k != i && k != j)
                 {
                     // ... points[i] points[j] points[k] 存在相同点问题 ...
 
                     int temp = a*points[k].x+b*points[k].y-c;
-                    if(temp==0)
+#ifdef _DEBUG
+                    if (temp==0)
                     {
                         cout << "temp==0 :\n" << points[i] << points[j] << points[k];
                     }
-                    if(temp>=0&&flag>=0)// (flag==0||flag>0)
+#endif
+                    if (temp>=0&&flag>=0)// (flag==0||flag>0)
                     {
                         flag = 1;
                     }
-                    else if(temp<0&& flag<=0)// (flag==0||flag<0)
+                    else if (temp<0&& flag<=0)// (flag==0||flag<0)
                     {
                         flag = -1;
-                    }/*
-                    else if(temp==0)
-                    {
-                        cout << "temp==0 :\n" << points[i] << points[j] << points[k];
-                        break;
-                    }*/
+                    }
                     else
                         break;//error ...
                 }
-            if(k==POINTNUM)
+            if (POINTNUM == k)
                 selPointPairs.push_back(PointPair(points[i], points[j]));
         }
     cout << "========selPointPairs  ==================\n";
@@ -75,19 +74,19 @@ int main()
     TPoint& pn = points[POINTNUM-1];
     vector<TPoint*>  upPack, downPack;
     int     pmax=INT_MIN, pmin=INT_MAX;
-    for(int i=1; i<POINTNUM-1; i++)
+    for (int i=1; i<POINTNUM-1; i++)
     {
         int temp = CountPmax(p1, pn, points[i]);
-        if(temp>0)
+        if (temp>0)
         {
             upPack.push_back(&points[i]);
-            if(temp>pmax)
+            if (temp>pmax)
                 pmax=i;//temp
         }
         else
         {
             downPack.push_back(&points[i]);
-            if(temp<pmin)
+            if (temp<pmin)
                 pmin=i;
         }
     }
@@ -104,7 +103,7 @@ int main()
     selpoints.push_back(&pn);
 
     vector<TPoint*> vecPoints(POINTNUM);
-    for(int i=0; i<vecPoints.size(); i++)
+    for (int i=0; i<vecPoints.size(); i++)
         vecPoints[i] = &points[i];
     //CountUppack(PointPairPtr(&points[0], &points[POINTNUM-1]), vecPoints, selpoints);//upPack
     //CountDownpack(PointPairPtr(&points[0], &points[POINTNUM-1]), vecPoints, selpoints);//downPack

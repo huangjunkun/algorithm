@@ -12,10 +12,10 @@ struct TPoint
     friend ostream& operator << (ostream& os, const TPoint& p);
     bool    operator < (const TPoint& p)const
     {
-        if( x<p.x )
+        if ( x<p.x )
             return true;
-        else if(x==p.x )
-            if(y<p.y)
+        else if (x==p.x )
+            if (y<p.y)
                 return true;
         return false;
     }
@@ -24,17 +24,17 @@ struct GreaterPoint : binary_function<bool, TPoint, TPoint>
 {
     bool operator () (const TPoint& p1, const TPoint& p2)const
     {
-        if( p1.x>p2.x )
+        if ( p1.x>p2.x )
             return true;
-        else if(p1.x==p2.x )
-            if(p1.y>p2.y)
+        else if (p1.x==p2.x )
+            if (p1.y>p2.y)
                 return true;
         return false;
     }
 };
 ostream& operator << (ostream& os, const TPoint& p)
 {
-    os << "(" << p.x << ", " << p.y << ") \n";
+    os << "(" << p.x << ", " << p.y << ") ";
     return os;
 }
 template <typename T>
@@ -77,26 +77,26 @@ typedef pair<TPoint*,TPoint*> PointPairPtr;
 void CountUppack(const PointPairPtr& pp, const VecPointPtr& points, \
                     VecPointPtr& selPoints)
 {
-    if(points.empty())
+    if (points.empty())
         return;
     VecPointPtr points1, points2;
     TPoint*     pointMax;
     int         max = INT_MIN;
-    for(int i=0; i<points.size(); i++)
+    for (int i=0; i<points.size(); i++)
     {
         int temp = CountPmax(*(pp.first), *(pp.second), *points[i]);
-        if(temp>max)
+        if (temp>max)
         {
             max = temp;
             pointMax = points[i];
         }
     }
     selPoints.push_back(pointMax);
-    for(int i=0; i<points.size(); i++)
+    for (int i=0; i<points.size(); i++)
     {
-        if(CountPmax(*(pp.first), *pointMax, *points[i])>0)
+        if (CountPmax(*(pp.first), *pointMax, *points[i])>0)
             points1.push_back(points[i]);
-        if(CountPmax(*pointMax, *(pp.second), *points[i])>0)
+        if (CountPmax(*pointMax, *(pp.second), *points[i])>0)
             points2.push_back(points[i]);
     }
 
@@ -107,26 +107,26 @@ void CountUppack(const PointPairPtr& pp, const VecPointPtr& points, \
 void CountDownpack(const PointPairPtr& pp, const VecPointPtr& points, \
                       VecPointPtr& selPoints)
 {
-    if(points.empty())
+    if (points.empty())
         return;
     VecPointPtr points1, points2;
     TPoint*     pointMax;
     int         min = INT_MAX;
-    for(int i=0; i<points.size(); i++)
+    for (int i=0; i<points.size(); i++)
     {
         int temp = CountPmax(*(pp.first), *(pp.second), *points[i]);
-        if(temp<min)
+        if (temp<min)
         {
             min = temp;
             pointMax = points[i];
         }
     }
     selPoints.push_back(pointMax);
-    for(int i=0; i<points.size(); i++)
+    for (int i=0; i<points.size(); i++)
     {
-        if(CountPmax(*(pp.first), *pointMax, *points[i])<0)
+        if (CountPmax(*(pp.first), *pointMax, *points[i])<0)
             points1.push_back(points[i]);
-        if(CountPmax(*pointMax, *(pp.second), *points[i])<0)
+        if (CountPmax(*pointMax, *(pp.second), *points[i])<0)
             points2.push_back(points[i]);
     }
 
