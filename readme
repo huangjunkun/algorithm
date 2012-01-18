@@ -6,8 +6,11 @@ e-mail：huangjunkun@gmail.com
 
 欢迎交流，谢谢！
 
-2.
+## 8.
+## 7.
+## 6.
 
+## 5.
 /**
 ** 源文件： convex_hull.h, convex_hull.cpp
 ** 功能：凸包问题的解决方案, 蛮力法与分治法.
@@ -47,7 +50,35 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问题 & 4.分治法4.6.2凸包
 ** 作者：junkun huang  e-mail：huangjunkun@gmail.com
 ** 日期：2009-09-20 /
 */
-1.
+
+## 4.
+/**
+** 源文件： min_spanning_tree.cpp
+** 功能说明：
+** 测试程序，最小生成树问题CMST解决方案Prim算法与Kruskal算法。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 /
+*/
+
+## 3.
+/**
+** 源文件： nearest_neighbor_search.cpp
+** 功能说明：
+** 测试程序，最近点对问题解决方案，蛮力法与分治法。详见以下代码。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 /
+*/
+
+## 2.
+/**
+** 源文件： shortest_path.cpp
+** 功能说明：
+** 测试程序，最短路径问题解决方案，Floyd算法与Dijkstra算法。详见以下代码。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 /
+*/
+
+## 1.
 
 /**
 ** 源文件： random_list_node.h, random_list_node_test.cpp
