@@ -37,7 +37,7 @@ typedef	struct G_Chart
 
 } G_Chart;
 
-G_Chart		G;		
+G_Chart		G;
 int 		*Q, *P;
 
 void Delete_Data(int points )
@@ -64,7 +64,7 @@ void Print_W( T **W, int points)
 		{/**/
 			if (W[i][j]==INT_MAX)
 				cout << "∞";
-			else	
+			else
 				cout << W[i][j];
 			cout << "  ";
 		}
@@ -87,7 +87,7 @@ void Floyd(int **D, char **DPath, int points)
 				if ( D[j][k] > ((__int64)D[j][i]+D[i][k]) )
 				{// 注意以上加法需防止结果溢出。
 					D[j][k] = D[j][i]+D[i][k];
-					DPath[j][k] = DPath[i][k];			
+					DPath[j][k] = DPath[i][k];
 				}
 			}
 	return;
@@ -107,21 +107,21 @@ void Init_WD( int points )
 {
 	W = new int* [points];
 	D = new int* [points];
-	DPath = new char* [points]; 
+	DPath = new char* [points];
 
 	for (int i=0; i < points; i++)
 	{
 		W[i] = new int [points];
 		D[i] = new int [points];
-		DPath[i] = new char [points]; 
+		DPath[i] = new char [points];
 	}
-	for (i=0; i < points; i++)
+	for (int i=0; i < points; i++)
 	{
 		for (int j=i; j< points; j++)
-		{		
+		{
 			if ( i==j )
 			{
-				D[j][i] = D[i][j] = W[j][i] = W[i][j] = 0;			
+				D[j][i] = D[i][j] = W[j][i] = W[i][j] = 0;
 			}/**/
 			else
 			{
@@ -129,7 +129,7 @@ void Init_WD( int points )
 					D[j][i] = D[i][j] = W[j][i] = W[i][j] = INT_MAX;//continue;
 				else
 					D[j][i] = D[i][j] = W[j][i] = W[i][j] = rand()%20+1;
-			}			
+			}
 		}
 		for (int k=0;k< points;k++)
 			DPath[i][k] = 'A' + i;
@@ -144,7 +144,7 @@ int DeleteMin( int *Q, bool *flag, int points )//queue<int>& Q
 		if ( flag[i]==false && min > Q[i] )
 		{
 			min = Q[i];
-			min_i = i;			
+			min_i = i;
 		}
 	}
 	if ( min_i!=-1)
@@ -169,8 +169,8 @@ void Decrease(int *Q, int s, int d )
 {
 	Q[s] = d;
 }
-void Dijkstra( G_Chart& G )//,int s 
-{	
+void Dijkstra( G_Chart& G )//,int s
+{
 	Q = new int [G.points];
 	P = new int [G.points];
 
@@ -178,7 +178,7 @@ void Dijkstra( G_Chart& G )//,int s
 	{
 		Init_QPFlag( Q, P, G.points );
 		Decrease(Q, s, 0 );//Q[0] = 0;
-		
+
 		for (int i=0; i < G.points-1; i++)
 		{
 			int 	u = DeleteMin(Q, G.flag, G.points);
@@ -193,24 +193,24 @@ void Dijkstra( G_Chart& G )//,int s
 				{	// 注意以上加法需防止结果溢出。
 					P[j] = u;
 					Decrease(Q, j, Q[u]+G.A[u][j] );//Q[j] = Q[u]+G.A[u][j];
-				}				
+				}
 			//system("pause");
-			}			
+			}
 		}
-		for (i=0; i < G.points; i++)
+		for (int i=0; i < G.points; i++)
 		{
 			G.A[i][s] = G.A[s][i] = Q[i];
 		}
 // 		cout << "\n	  --- 找到一条最短路径 ---\n";//
 // 		Print_PQ();//
-	}	
+	}
 }
 
 void Init_G_Chart(int points)
 {
 		//为 G 申请空间
 	G.A = new int*[points];
-	G.flag = new bool[points];	
+	G.flag = new bool[points];
 	G.points = points;
 
 	for (int i=0; i < points; i++)
@@ -218,18 +218,18 @@ void Init_G_Chart(int points)
 		G.A[i] = new int [points];
 		G.flag[i] = false;
 	}
-	for (i=0; i < G.points; i++)
+	for (int i=0; i < G.points; i++)
 		for (int j=i; j< G.points; j++)
 		{
 			G.A[i][j] = G.A[j][i] = W[i][j];
 		}
 }
 
-void main()
+int main()
 {
 	time_t		t;
     srand((unsigned) time(&t));
-	
+
 	char c;
 	do
 	{
@@ -237,15 +237,15 @@ void main()
 		do
 		{
 			system("cls");
-			cout << "\n\n\n	请输入生成树的点数( > 0 ) ：";			
+			cout << "\n\n\n	请输入生成树的点数( > 0 ) ：";
 			cin >> points;
-		} while( points <=0 );		
+		} while( points <=0 );
 		//为W 申请空间，且初始化。
 		Init_WD( points);
 		cout << "\n	随机生成图的权重矩阵： ";
 		Print_W( D, points );
 		Print_DPath(DPath, points);
-		//		
+		//
 		Floyd(D, DPath, points);
 		cout << "\n	由Floyd算法求得该图的距离矩阵： ";
 		Print_W( D, points );
@@ -258,10 +258,10 @@ void main()
 		Print_W( G.A, points );//
 		//Print_PQ();
 
-		
+
 		Delete_Data( G.points );
 		cout << "\n\n	!!!按任意键继续，Esc退出程序!!!" << endl;
 
 	}while( (c=getch())!=27 );
-	return	;
+	return 0;
 }
