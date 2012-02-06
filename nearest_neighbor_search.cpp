@@ -1,4 +1,4 @@
-
+ï»¿
 #include <iostream>
 #include <vector>
 #include <cstdio>
@@ -11,33 +11,33 @@
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º nearest_neighbor_search.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬×î½üµã¶ÔÎÊÌâ½â¾ö·½°¸£¬ÂùÁ¦·¨Óë·ÖÖÎ·¨¡£Ïê¼ûÒÔÏÂ´úÂë¡£
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** æºæ–‡ä»¶ï¼š nearest_neighbor_search.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œæœ€è¿‘ç‚¹å¯¹é—®é¢˜è§£å†³æ–¹æ¡ˆï¼Œè›®åŠ›æ³•ä¸åˆ†æ²»æ³•ã€‚è¯¦è§ä»¥ä¸‹ä»£ç ã€‚
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
 //---------------------------------------------------------------------------
-//µã½á¹¹
+//ç‚¹ç»“æ„
 typedef	struct Pair
 {
     int		x;
     int		y;
 } Pair;
 
-//×î½üµã¶Ô½á¹¹
+//æœ€è¿‘ç‚¹å¯¹ç»“æ„
 typedef	struct Closest_Pair
 {
     Pair	pair_a, pair_b;
     double	distance;
 } Closest_Pair;
 
-//µã¶Ô½á¹¹
+//ç‚¹å¯¹ç»“æ„
 typedef	struct Points
 {
     Pair*	p_pair;
-    int		pair_nums;//µã¶ÔÊıÄ¿
+    int		pair_nums;//ç‚¹å¯¹æ•°ç›®
 } Points;
 
 //---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ double Account_Distance_2(const Pair& A, const Pair& B )
 //---------------------------------------------------------------------------
 void Print_Points(ostream& outs, const Points&	points, const Closest_Pair&	closest_pair )
 {
-    outs << "\n\n	Ëæ»ú²úÉúµã¶ÔÈçÏÂ£º\n";
+    outs << "\n\n	éšæœºäº§ç”Ÿç‚¹å¯¹å¦‚ä¸‹ï¼š\n";
     for(int i=0; i<points.pair_nums; ++i)
     {
         outs << "   (" << points.p_pair[i].x << ",  " << points.p_pair[i].y << " ) ";
@@ -66,10 +66,10 @@ void Print_Points(ostream& outs, const Points&	points, const Closest_Pair&	close
             outs << endl;
         }
     }
-    outs << "\n\n	ÓÉÒÔÉÏµã¶Ô¿ÉµÃ×î½üµã¶ÔÎª£º ( "
+    outs << "\n\n	ç”±ä»¥ä¸Šç‚¹å¯¹å¯å¾—æœ€è¿‘ç‚¹å¯¹ä¸ºï¼š ( "
     << closest_pair.pair_a.x << ",  " << closest_pair.pair_a.y << " ), ( "
     << closest_pair.pair_b.x << ",  " << closest_pair.pair_b.y << " ) ";
-    outs << "\n	¸Ãµã¶Ô¾àÀëÎª£º" << closest_pair.distance << endl;
+    outs << "\n	è¯¥ç‚¹å¯¹è·ç¦»ä¸ºï¼š" << closest_pair.distance << endl;
 
 }
 //---------------------------------------------------------------------------
@@ -96,13 +96,13 @@ bool Brute_Force(const Points& points, Closest_Pair& closest_pair, int from, int
 }
 //---------------------------------------------------------------------------
 
-// ¶ÔË³Ğò±íL×÷¹é²¢ÅÅĞò¡£
+// å¯¹é¡ºåºè¡¨Lä½œå½’å¹¶æ’åºã€‚
 
 void Merge(char sign, Pair SR[], Pair TR[], long i, long m, long n)
 {
-    // ½«ÓĞĞòµÄSR[i..m]ºÍSR[m+1..n]¹é²¢ÎªÓĞĞòµÄTR[i..n]
+    // å°†æœ‰åºçš„SR[i..m]å’ŒSR[m+1..n]å½’å¹¶ä¸ºæœ‰åºçš„TR[i..n]
     int j=m+1,k=i;
-    for(; i<=m&&j<=n; ++k) // ½«SRÖĞ¼ÇÂ¼ÓÉĞ¡µ½´óµØ²¢ÈëTR
+    for(; i<=m&&j<=n; ++k) // å°†SRä¸­è®°å½•ç”±å°åˆ°å¤§åœ°å¹¶å…¥TR
     {
 
         if(sign=='x')
@@ -126,7 +126,7 @@ void Merge(char sign, Pair SR[], Pair TR[], long i, long m, long n)
     {
         for(int l=0; l<=m-i; l++)
         {
-            TR[k+l]=SR[i+l]; // ½«Ê£ÓàµÄSR[i..m]¸´ÖÆµ½TR
+            TR[k+l]=SR[i+l]; // å°†å‰©ä½™çš„SR[i..m]å¤åˆ¶åˆ°TR
 
         }
     }
@@ -134,7 +134,7 @@ void Merge(char sign, Pair SR[], Pair TR[], long i, long m, long n)
     {
         for(int l=0; l<=n-j; l++)
         {
-            TR[k+l]=SR[j+l]; // ½«Ê£ÓàµÄSR[j..n]¸´ÖÆµ½TR
+            TR[k+l]=SR[j+l]; // å°†å‰©ä½™çš„SR[j..n]å¤åˆ¶åˆ°TR
         }
     }
 
@@ -143,7 +143,7 @@ void Merge(char sign, Pair SR[], Pair TR[], long i, long m, long n)
 
 void MSort(char sign, Pair SR[], Pair TR1[], long s,  long t)
 {
-    // ½«SR[s..t]¹é²¢ÅÅĞòÎªTR1[s..t].
+    // å°†SR[s..t]å½’å¹¶æ’åºä¸ºTR1[s..t].
 
     if(s==t)
     {
@@ -153,10 +153,10 @@ void MSort(char sign, Pair SR[], Pair TR1[], long s,  long t)
     {
 //      int length = t-s+1;//
         Pair* TR2 = new Pair[points.pair_nums];
-        long	m = (s+t)/2; // ½«SR[s..t]Æ½·ÖÎªSR[s..m]ºÍSR[m+1..t]
-        MSort(sign, SR, TR2, s, m); // µİ¹éµØ½«SR[s..m]¹é²¢ÎªÓĞĞòµÄTR2[s..m]
-        MSort(sign, SR, TR2, m+1, t); // µİ¹éµØ½«SR[m+1..t]¹é²¢ÎªÓĞĞòµÄTR2[m+1..t]
-        Merge(sign, TR2, TR1, s, m, t); // ½«TR2[s..m]ºÍTR2[m+1..t]¹é²¢µ½TR1[s..t]
+        long	m = (s+t)/2; // å°†SR[s..t]å¹³åˆ†ä¸ºSR[s..m]å’ŒSR[m+1..t]
+        MSort(sign, SR, TR2, s, m); // é€’å½’åœ°å°†SR[s..m]å½’å¹¶ä¸ºæœ‰åºçš„TR2[s..m]
+        MSort(sign, SR, TR2, m+1, t); // é€’å½’åœ°å°†SR[m+1..t]å½’å¹¶ä¸ºæœ‰åºçš„TR2[m+1..t]
+        Merge(sign, TR2, TR1, s, m, t); // å°†TR2[s..m]å’ŒTR2[m+1..t]å½’å¹¶åˆ°TR1[s..t]
 
         delete[] TR2;
     }
@@ -176,7 +176,7 @@ void Comp_CP(const Points& points, Closest_Pair& closest_pair, int	mid, int mid_
         {
             if( points.p_pair[j].y > (points.p_pair[i].y+distance) ||
                     points.p_pair[j].y < (points.p_pair[i].y-distance) )
-                //ÅĞ¶ÏÔÚyÖáÊÇ·ñ³ö½ç
+                //åˆ¤æ–­åœ¨yè½´æ˜¯å¦å‡ºç•Œ
                 continue;
 
             double		next = Account_Distance_2( points.p_pair[i], points.p_pair[j]);//sqrt( )
@@ -246,11 +246,11 @@ int	main()
     {
         system("cls");
 
-        cout << "\n\n	ÇëÊäÈëÄãÒªËæ»ú²úÉúµã¶ÔµÄ¶ÔÊı£º ";
+        cout << "\n\n	è¯·è¾“å…¥ä½ è¦éšæœºäº§ç”Ÿç‚¹å¯¹çš„å¯¹æ•°ï¼š ";
         cin >> points.pair_nums;
         if (points.pair_nums <= 0 || points.pair_nums > 1000)
         {
-            cout << "ÊäÈëÓĞÎó£¬ÍË³ö³ÌĞò£¡\n";
+            cout << "è¾“å…¥æœ‰è¯¯ï¼Œé€€å‡ºç¨‹åºï¼\n";
             break;
         }
 
@@ -261,28 +261,28 @@ int	main()
             points.p_pair[i].x= rand()%101;
             points.p_pair[i].y= rand()%101;
         }
-        /// ·ÖÖÎ·¨Çó½â£¬ÏÈÅÅĞòÈ·±£ÂùÁ¦·¨Óë·ÖÖÎ·¨Çó½âµÄÊı¾İÒ»ÖÂ¡£
+        /// åˆ†æ²»æ³•æ±‚è§£ï¼Œå…ˆæ’åºç¡®ä¿è›®åŠ›æ³•ä¸åˆ†æ²»æ³•æ±‚è§£çš„æ•°æ®ä¸€è‡´ã€‚
         MSort('x', points.p_pair, points.p_pair, 0, points.pair_nums-1 );
 
-        //ÂùÁ¦·¨Çó½â
-        cout << "\n\n--- ÂùÁ¦·¨Çó½â ---\n";
+        //è›®åŠ›æ³•æ±‚è§£
+        cout << "\n\n--- è›®åŠ›æ³•æ±‚è§£ ---\n";
         closest_pair.distance = ULONG_MAX;//MAX_SIZE
         Brute_Force(points, closest_pair, 0, points.pair_nums-1 );
         closest_pair.distance = sqrt( closest_pair.distance );
         Print_Points( cout,  points, closest_pair );
 
-// 		/// ·ÖÖÎ·¨Çó½â£¬ÏÈÅÅĞò
+// 		/// åˆ†æ²»æ³•æ±‚è§£ï¼Œå…ˆæ’åº
 // 		MSort('x', points.p_pair, points.p_pair, 0, points.pair_nums-1 );
 
-        //·ÖÖÎ·¨Çó½â
-        cout << "\n\n--- ·ÖÖÎ·¨Çó½â ---\n";
+        //åˆ†æ²»æ³•æ±‚è§£
+        cout << "\n\n--- åˆ†æ²»æ³•æ±‚è§£ ---\n";
         closest_pair.distance = ULONG_MAX;//MAX_SIZE
         Divide_and_Conquer(points, closest_pair, 0, points.pair_nums-1 );
         closest_pair.distance = sqrt( closest_pair.distance );
         Print_Points( cout,  points, closest_pair );
         delete[] points.p_pair;
 
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while( (c=getch())!=27 );

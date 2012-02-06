@@ -1,4 +1,4 @@
-
+ï»¿
 //---------------------------------------------------------------------------
 
 #include  <iostream>
@@ -14,16 +14,16 @@
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º find_a_fake_coin.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬¼Ù±ÒÎÊÌâ£ºÓĞÈô¸É½ğ±Ò¡¾3-1000¡¿£¬´æÓĞÒ»¼Ù±Ò£¬ÇÒ²»Öª¼Ù±Ò½ÏÇá»ò½ÏÖØ£¬ÓÃÒ»ÌìèÒÕÒ³öÆäÖĞµÄ¼Ù±ÒÇÒÖªÆäÇáÖØ£¬
-	ÒªÇó±È½Ï´ÎÊıÔ½ÉÙÔ½ºÃ¡£
-** ÒÔÏÂ³ÌĞòÒÔ·ÖÖÎ·¨£¬µİ¹éµÄĞÎÊ½Çó½â°üÀ¨£¬¶ş·Ö·¨£¬Èı·Ö·¨ºÍËÄ·Ö·¨¡£³ÌĞòÂß¼­ÓĞÒ»¶¨ÏàËÆĞÔ£¬µ«Ğ§ÂÊ²»Ò»¡£ÕûÌåÉÏĞ§ÂÊ£º
-** Èı·Ö·¨ >= ËÄ·Ö·¨ >= ¶ş·Ö·¨
-** ¾ßÌåÊµÏÖ£¬Ïê¼ûÔ´ÂëÓë×¢ÊÍËµÃ÷¡£
+** æºæ–‡ä»¶ï¼š find_a_fake_coin.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œå‡å¸é—®é¢˜ï¼šæœ‰è‹¥å¹²é‡‘å¸ã€3-1000ã€‘ï¼Œå­˜æœ‰ä¸€å‡å¸ï¼Œä¸”ä¸çŸ¥å‡å¸è¾ƒè½»æˆ–è¾ƒé‡ï¼Œç”¨ä¸€å¤©æ°æ‰¾å‡ºå…¶ä¸­çš„å‡å¸ä¸”çŸ¥å…¶è½»é‡ï¼Œ
+	è¦æ±‚æ¯”è¾ƒæ¬¡æ•°è¶Šå°‘è¶Šå¥½ã€‚
+** ä»¥ä¸‹ç¨‹åºä»¥åˆ†æ²»æ³•ï¼Œé€’å½’çš„å½¢å¼æ±‚è§£åŒ…æ‹¬ï¼ŒäºŒåˆ†æ³•ï¼Œä¸‰åˆ†æ³•å’Œå››åˆ†æ³•ã€‚ç¨‹åºé€»è¾‘æœ‰ä¸€å®šç›¸ä¼¼æ€§ï¼Œä½†æ•ˆç‡ä¸ä¸€ã€‚æ•´ä½“ä¸Šæ•ˆç‡ï¼š
+** ä¸‰åˆ†æ³• >= å››åˆ†æ³• >= äºŒåˆ†æ³•
+** å…·ä½“å®ç°ï¼Œè¯¦è§æºç ä¸æ³¨é‡Šè¯´æ˜ã€‚
 
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 Ç° /
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 å‰ /
 */
 
 #define		WHICH_HEAVY_LEFT	-1
@@ -34,19 +34,19 @@ using namespace std;
 #define		FAKE_STATE_UNKNOWN	1
 #define		FAKE_STATE_LIGHT	0
 
-static int s_which_heavy = WHICH_HEAVY_UNKNOWN;//ÄÇÒ»±ß±È½ÏÖØ£¬³õÊ¼»¯Îª0 £¬¼´Î´È·¶¨
-static int s_fake_state	= FAKE_STATE_UNKNOWN;//¼Ù±ÒÇáÖØ±êÖ¾,³õÊ¼»¯Îª1 £¬¼´Î´È·¶¨
-static int s_fake_coin = -1; //³õÊ¼»¯¼Ù±ÒÎ»ÖÃ
+static int s_which_heavy = WHICH_HEAVY_UNKNOWN;//é‚£ä¸€è¾¹æ¯”è¾ƒé‡ï¼Œåˆå§‹åŒ–ä¸º0 ï¼Œå³æœªç¡®å®š
+static int s_fake_state	= FAKE_STATE_UNKNOWN;//å‡å¸è½»é‡æ ‡å¿—,åˆå§‹åŒ–ä¸º1 ï¼Œå³æœªç¡®å®š
+static int s_fake_coin = -1; //åˆå§‹åŒ–å‡å¸ä½ç½®
 
-/// Í³¼Æ²»Í¬½â·¨µÄµİ¹é´ÎÊı
+/// ç»Ÿè®¡ä¸åŒè§£æ³•çš„é€’å½’æ¬¡æ•°
 static size_t s_find_2_comp_count = 0;
 static size_t s_find_3_comp_count = 0;
 static size_t s_find_4_comp_count = 0;
 void init()
 {
-    s_fake_coin = -1; //³õÊ¼»¯¼Ù±ÒÎ»ÖÃ
-    s_fake_state = FAKE_STATE_UNKNOWN;//ÇáÖØ±êÖ¾,³õÊ¼»¯Îª1 £¬¼´Î´È·¶¨
-    s_which_heavy = WHICH_HEAVY_UNKNOWN;//ÄÇÒ»±ß±È½ÏÖØ£¬³õÊ¼»¯Îª0 £¬¼´Î´È·¶¨
+    s_fake_coin = -1; //åˆå§‹åŒ–å‡å¸ä½ç½®
+    s_fake_state = FAKE_STATE_UNKNOWN;//è½»é‡æ ‡å¿—,åˆå§‹åŒ–ä¸º1 ï¼Œå³æœªç¡®å®š
+    s_which_heavy = WHICH_HEAVY_UNKNOWN;//é‚£ä¸€è¾¹æ¯”è¾ƒé‡ï¼Œåˆå§‹åŒ–ä¸º0 ï¼Œå³æœªç¡®å®š
 
     s_find_2_comp_count = 0;
     s_find_3_comp_count = 0;
@@ -55,21 +55,21 @@ void init()
 }
 void print_find_result()
 {
-    cout <<  "	½á¹û, ¼Ù±ÒÎ»ÖÃ£º" <<  s_fake_coin;
+    cout <<  "	ç»“æœ, å‡å¸ä½ç½®ï¼š" <<  s_fake_coin;
     if (s_fake_state == FAKE_STATE_LIGHT)
-        cout <<  "	¼Ù±Ò½ÏÇá£¡";
+        cout <<  "	å‡å¸è¾ƒè½»ï¼";
     else if (s_fake_state == FAKE_STATE_HEAVY)
-        cout <<  "	¼Ù±Ò½ÏÖØ£¡";
+        cout <<  "	å‡å¸è¾ƒé‡ï¼";
     else
-        cout <<  "	ÎŞ¼Ù±Ò£¡";
-    cout << "±È½Ï´ÎÊı£º"<< s_find_2_comp_count+s_find_3_comp_count+s_find_4_comp_count << endl;
+        cout <<  "	æ— å‡å¸ï¼";
+    cout << "æ¯”è¾ƒæ¬¡æ•°ï¼š"<< s_find_2_comp_count+s_find_3_comp_count+s_find_4_comp_count << endl;
 }
 void uninit()
 {
     print_find_result();
 }
 
-//¶ş·Ö·¨Çó½â
+//äºŒåˆ†æ³•æ±‚è§£
 int sum_coins(const int A[], int from, int to)
 {
     int sum = 0;
@@ -82,7 +82,7 @@ int sum_coins(const int A[], int from, int to)
 //---------------------------------------------------------------------------
 bool calc_fake_coin(int A[], int c1, int c2)
 {
-    //ÔÚÈ·¶¨Õæ±ÒA[0]µÄÇ°ÌáÏÂ£¬Ê£ÏÂ2¸öÓ²±Ò»òÒ»¸ö£¨c1==c2£©£¬¼ì²â¼Ù±ÒµÄËùÔÚÎ»ÖÃºÍÇáÖØ¡£
+    //åœ¨ç¡®å®šçœŸå¸A[0]çš„å‰æä¸‹ï¼Œå‰©ä¸‹2ä¸ªç¡¬å¸æˆ–ä¸€ä¸ªï¼ˆc1==c2ï¼‰ï¼Œæ£€æµ‹å‡å¸çš„æ‰€åœ¨ä½ç½®å’Œè½»é‡ã€‚
     if (c1 == c2)
     {
         if (A[0] != A[c1])
@@ -113,7 +113,7 @@ bool calc_fake_coin(int A[], int c1, int c2)
 //---------------------------------------------------------------------------
 bool find_a_fake_coin_2(const int A[], int from, int to)
 {
-    //    /*/*¼Ù±ÒÎÊÌâÇó½â£º¶ş·Ö·¨*/
+    //    /*/*å‡å¸é—®é¢˜æ±‚è§£ï¼šäºŒåˆ†æ³•*/
     ++s_find_2_comp_count;
     if (to == from)
     {
@@ -161,11 +161,11 @@ bool find_a_fake_coin_2(const int A[], int from, int to)
 void find_a_fake_coin_3(int A[], int from, int to)
 {
     ++s_find_3_comp_count;
-//    /*¼Ù±ÒÎÊÌâÇó½â£ºÈı·Ö·¨*/
+//    /*å‡å¸é—®é¢˜æ±‚è§£ï¼šä¸‰åˆ†æ³•*/
     if ((to-from+1) < 3)
     {
         //
-        //È·¶¨Õæ±ÒµÄÖØÁ¿--±ÒÖÖ
+        //ç¡®å®šçœŸå¸çš„é‡é‡--å¸ç§
         if (from > 1)
             A[0] = A[1];
         else
@@ -182,7 +182,7 @@ void find_a_fake_coin_3(int A[], int from, int to)
         {
             if (s_fake_state == FAKE_STATE_UNKNOWN)
             {
-                //ÅĞ¶Ï¼Ù±ÒµÄÇáÖØ
+                //åˆ¤æ–­å‡å¸çš„è½»é‡
                 if (s_which_heavy == WHICH_HEAVY_LEFT)
                     s_fake_state = FAKE_STATE_LIGHT;
                 if (s_which_heavy == WHICH_HEAVY_RIGHT)
@@ -195,7 +195,7 @@ void find_a_fake_coin_3(int A[], int from, int to)
         {
             if (s_fake_state == FAKE_STATE_UNKNOWN)
             {
-                //¼ÇÂ¼ÇáÖØÇé¿ö
+                //è®°å½•è½»é‡æƒ…å†µ
                 if (sum_coins(A, from, mid1) > sum_coins(A, mid1+1, mid2))
                     s_which_heavy = WHICH_HEAVY_LEFT;
                 else
@@ -210,7 +210,7 @@ void find_a_fake_coin_3(int A[], int from, int to)
 //---------------------------------------------------------------------------
 void find_a_fake_coin_4(int A[], int from, int to)
 {
-//    /*/*¼Ù±ÒÎÊÌâÇó½â£ºËÄ·Ö·¨*/
+//    /*/*å‡å¸é—®é¢˜æ±‚è§£ï¼šå››åˆ†æ³•*/
     ++s_find_4_comp_count;
     if ((to-from+1) < 4)
     {
@@ -223,9 +223,9 @@ void find_a_fake_coin_4(int A[], int from, int to)
         int mid2 = mid1+i;
         if (sum_coins(A, from, mid1) == sum_coins(A, mid1+1, mid2))
         {
-// 			/// ÒÔÏÂ×¢ÊÍÂß¼­´æÔÚÈ±Ïİ£¬½öÊÊºÏÓÚÈı·Ö·¨¡£
+// 			/// ä»¥ä¸‹æ³¨é‡Šé€»è¾‘å­˜åœ¨ç¼ºé™·ï¼Œä»…é€‚åˆäºä¸‰åˆ†æ³•ã€‚
 // 			if (s_fake_state == FAKE_STATE_UNKNOWN)
-// 			{	//ÅĞ¶Ï¼Ù±ÒµÄÇáÖØ
+// 			{	//åˆ¤æ–­å‡å¸çš„è½»é‡
 // 				if (s_which_heavy == WHICH_HEAVY_LEFT)
 // 					s_fake_state = FAKE_STATE_LIGHT;
 // 				if (s_which_heavy == WHICH_HEAVY_RIGHT)
@@ -235,9 +235,9 @@ void find_a_fake_coin_4(int A[], int from, int to)
         }
         else
         {
-// 			/// ÒÔÏÂ×¢ÊÍÂß¼­´æÔÚÈ±Ïİ£¬½öÊÊºÏÓÚÈı·Ö·¨¡£
+// 			/// ä»¥ä¸‹æ³¨é‡Šé€»è¾‘å­˜åœ¨ç¼ºé™·ï¼Œä»…é€‚åˆäºä¸‰åˆ†æ³•ã€‚
 // 			if (s_fake_state == FAKE_STATE_UNKNOWN)
-// 			{	//¼ÇÂ¼ÇáÖØÇé¿ö
+// 			{	//è®°å½•è½»é‡æƒ…å†µ
 // 				if (sum_coins(A, from, mid1) > sum_coins(A, mid1+1, mid2))
 // 					s_which_heavy = WHICH_HEAVY_LEFT;
 // 				else
@@ -250,7 +250,7 @@ void find_a_fake_coin_4(int A[], int from, int to)
 
 void print_coins(const int pCoins[], int count)
 {
-    cout <<  "[±àºÅ]ÇáÖØ";
+    cout <<  "[ç¼–å·]è½»é‡";
     for (int i=1; i <=count; ++i)
     {
         cout <<  " [" <<  i <<  "]" << pCoins[i];
@@ -268,20 +268,20 @@ int main()
     do
     {
         system("cls");
-        /// ÖÁÉÙĞèÒªÓĞ3¸ö»õ±Ò²ÅÓĞ±È½ÏÒâÒå£¡
-        cout <<  "\n\n	ÇëÊäÈë»õ±Ò×ÜÊı¡¾3-1000¡¿£º ";
+        /// è‡³å°‘éœ€è¦æœ‰3ä¸ªè´§å¸æ‰æœ‰æ¯”è¾ƒæ„ä¹‰ï¼
+        cout <<  "\n\n	è¯·è¾“å…¥è´§å¸æ€»æ•°ã€3-1000ã€‘ï¼š ";
         int coin_count = 100;
         cin >>  coin_count;
         if (coin_count <= MAX_COIN_COUNT && coin_count > 2)
         {
 
-            int fake_s = rand()%2;//Ëæ»úÖµ:1 ¼Ù±Ò½ÏÖØ, 0 ¼Ù±Ò½ÏÇá.
-            int fake_pos = (rand()%coin_count)+1;//Ëæ»úÖµ,¼Ù±Ò³öÏÖµÄÎ»ÖÃ.
-            // ²âÊÔÑùÀı 2 * 100
+            int fake_s = rand()%2;//éšæœºå€¼:1 å‡å¸è¾ƒé‡, 0 å‡å¸è¾ƒè½».
+            int fake_pos = (rand()%coin_count)+1;//éšæœºå€¼,å‡å¸å‡ºç°çš„ä½ç½®.
+            // æµ‹è¯•æ ·ä¾‹ 2 * 100
 // 			for (int fake_s = 0; fake_s < 2; ++fake_s)
 // 				for (int fake_pos = 1; fake_pos <= 100; ++fake_pos)
             {
-                // ³õÊ¼»¯pCoins[0]´æ·ÅÕæ±Ò£¬×÷ÎªÅĞ¶Ï±ê×¼£¡
+                // åˆå§‹åŒ–pCoins[0]å­˜æ”¾çœŸå¸ï¼Œä½œä¸ºåˆ¤æ–­æ ‡å‡†ï¼
                 for (int i=0; i <=coin_count; ++i)
                     pCoins[i] = 1;
 
@@ -294,21 +294,21 @@ int main()
                 int state2, state3, state4;
                 print_coins(pCoins, coin_count);
 
-                cout <<  "\n	¶ş·Ö·¨Çó½â:\n";
+                cout <<  "\n	äºŒåˆ†æ³•æ±‚è§£:\n";
                 init();
                 find_a_fake_coin_2(pCoins, 1, coin_count);
                 uninit();
                 pos2 = s_fake_coin;
                 state2 = s_fake_state;
 
-                cout <<  "\n	Èı·Ö·¨Çó½â:\n";
+                cout <<  "\n	ä¸‰åˆ†æ³•æ±‚è§£:\n";
                 init();
                 find_a_fake_coin_3(pCoins, 1, coin_count);
                 uninit();
                 pos3 = s_fake_coin;
                 state3 = s_fake_state;
 
-                cout <<  "\n	ËÄ·Ö·¨Çó½â:\n";
+                cout <<  "\n	å››åˆ†æ³•æ±‚è§£:\n";
                 init();
                 find_a_fake_coin_4(pCoins, 1, coin_count);
                 uninit();
@@ -317,7 +317,7 @@ int main()
                 cout << " pos:" << pos2 << " " << pos3 << " "  << pos4
                      << " state:" << state2 << " " << state3 << " " << state4 << "\n";
 
-                /// ¼ì²â³ÌĞò½á¹ûÊÇ·ñÕıÈ·£¡
+                /// æ£€æµ‹ç¨‹åºç»“æœæ˜¯å¦æ­£ç¡®ï¼
                 if (!((pos2 == pos3 && pos3 == pos4) && (state2 == state3 && state3 == state4)))
                 {
                     cout <<  " --- ERROR ---\n";
@@ -327,9 +327,9 @@ int main()
 
         }
         else
-            cout <<  " ÊäÈëÓĞÎó£¡";
+            cout <<  " è¾“å…¥æœ‰è¯¯ï¼";
 
-        cout <<  "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" <<  endl;
+        cout <<  "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" <<  endl;
 
     }
     while( (c=getch())!=27);

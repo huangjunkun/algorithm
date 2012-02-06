@@ -1,4 +1,4 @@
-
+ï»¿
 /*
 Using Horner's Rule evaluating a polynomial p(x) at x = a;
  then compute the quotient and the remainder of the division of p(x) by x - a;(x-a !=0)
@@ -17,14 +17,14 @@ Using Horner's Rule evaluating a polynomial p(x) at x = a;
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º horner_rule.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬»ôÄÉ·¨ÔòÓÃÓÚ¼ÆËã¶àÏîÊ½ÖµµÄÒ»ÖÖ¹ÅÀÏµÄËã·¨£¬µ«È´Ê®·ÖÓÅÑÅºÍ¸ßĞ§¡£
-** »ôÄÉ·¨Ôò»¹ÓĞÒ»Ğ©ÓĞÓÃµÄ¸±²úÆ·£¬ÀıÈçÓĞ¶àÏîÊ½P(x)£¬ÔÚ¼ÆËãP(a)µÄÖµ¹ı³Ì²úÉúµÄÖĞ¼äÊı×Ö£¬
-	¿É×éÖ¯×÷ÎªP(X)³ıÒÔX-aÉÌÓëÓàÊı¡£Ïê¼û¡¶Ëã·¨·ÖÎöÓëÉè¼Æ¡·6.5.1»ôÄÉ·¨Ôò¡£
-** ¹ØÓÚ»ôÄÉ·¨Ôò£¬Ïê¼ûhttp://baike.baidu.com/view/3060869.htm
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** æºæ–‡ä»¶ï¼š horner_rule.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œéœçº³æ³•åˆ™ç”¨äºè®¡ç®—å¤šé¡¹å¼å€¼çš„ä¸€ç§å¤è€çš„ç®—æ³•ï¼Œä½†å´ååˆ†ä¼˜é›…å’Œé«˜æ•ˆã€‚
+** éœçº³æ³•åˆ™è¿˜æœ‰ä¸€äº›æœ‰ç”¨çš„å‰¯äº§å“ï¼Œä¾‹å¦‚æœ‰å¤šé¡¹å¼P(x)ï¼Œåœ¨è®¡ç®—P(a)çš„å€¼è¿‡ç¨‹äº§ç”Ÿçš„ä¸­é—´æ•°å­—ï¼Œ
+	å¯ç»„ç»‡ä½œä¸ºP(X)é™¤ä»¥X-aå•†ä¸ä½™æ•°ã€‚è¯¦è§ã€Šç®—æ³•åˆ†æä¸è®¾è®¡ã€‹6.5.1éœçº³æ³•åˆ™ã€‚
+** å…³äºéœçº³æ³•åˆ™ï¼Œè¯¦è§http://baike.baidu.com/view/3060869.htm
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
 typedef	unsigned int ParmaType;
@@ -48,14 +48,14 @@ int main()
     do
     {
         system("cls");
-        cout << "\n\n\n	ÇëÊäÈë¶àÏîÊ½µÄ×î¸ßÃİ£º";
+        cout << "\n\n\n	è¯·è¾“å…¥å¤šé¡¹å¼çš„æœ€é«˜å¹‚ï¼š";
         int n;
         ParmaType P;
         cin >> n;
         ParmaType*	hData = new ParmaType[n+1];
         assert (hData);
         vector<ParmaType>	hVec;
-        cout << "\n Ëæ»ú²úÉúµÄ¶àÏîÊ½P(x)Îª£º";
+        cout << "\n éšæœºäº§ç”Ÿçš„å¤šé¡¹å¼P(x)ä¸ºï¼š";
         for (int i=n; i>=0; i--)
         {
             hData[i] = rand()%100;
@@ -64,23 +64,23 @@ int main()
                 cout  << " + ";
         }
 
-        cout << "\n	ÇëÊäÈëX=aµÄÖµ£º";
+        cout << "\n	è¯·è¾“å…¥X=açš„å€¼ï¼š";
         int x;
         cin >> x;
 
         P = Horner(hData, n, x, hVec);
 
-        cout << "	µ±X = " << x << " Ê±£¬¶àÏîÊ½µÄÖµÎª£º" << P << endl;
-        cout << "\n ¶àÏîÊ½P(x)³ıÒÔX-aÉÌ£º";
+        cout << "	å½“X = " << x << " æ—¶ï¼Œå¤šé¡¹å¼çš„å€¼ä¸ºï¼š" << P << endl;
+        cout << "\n å¤šé¡¹å¼P(x)é™¤ä»¥X-aå•†ï¼š";
         for (int i=0; i<hVec.size(); i++)
         {
             cout << hVec[i] << "X^" << n-i-1;
             if (i!=n-1)
                 cout  << " + ";
         }
-        cout << "\n ¶àÏîÊ½P(x)³ıÒÔX-aÓàÊı£º" << P;
+        cout << "\n å¤šé¡¹å¼P(x)é™¤ä»¥X-aä½™æ•°ï¼š" << P;
         delete[] hData;
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while( (c=getch())!=27 );

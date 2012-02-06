@@ -1,4 +1,4 @@
-
+ï»¿
 
 //---------------------------------------------------------------------------
 
@@ -16,13 +16,13 @@
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º find_a_fake_coin_form_12.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬¼Ù±ÒÎÊÌâ£º12Ã¶½ğ±ÒÖĞ´æÓĞÒ»¼Ù±Ò£¬ÇÒ²»Öª¼Ù±Ò½ÏÇá»ò½ÏÖØ£¬¸øÒ»ÌìèÒÏŞ³Æ3´ÎÕÒ³öÆäÖĞµÄ¼Ù±Ò²¢ÖªÆäÇáÖØ¡£
-    ³ÌĞòÂŞÁĞ³öËùÓĞ²»Í¬µÄ½â·¨£¬¹²2*12ÖÖ¡£
+** æºæ–‡ä»¶ï¼š find_a_fake_coin_form_12.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œå‡å¸é—®é¢˜ï¼š12æšé‡‘å¸ä¸­å­˜æœ‰ä¸€å‡å¸ï¼Œä¸”ä¸çŸ¥å‡å¸è¾ƒè½»æˆ–è¾ƒé‡ï¼Œç»™ä¸€å¤©æ°é™ç§°3æ¬¡æ‰¾å‡ºå…¶ä¸­çš„å‡å¸å¹¶çŸ¥å…¶è½»é‡ã€‚
+    ç¨‹åºç½—åˆ—å‡ºæ‰€æœ‰ä¸åŒçš„è§£æ³•ï¼Œå…±2*12ç§ã€‚
 
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 Ç° /
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 å‰ /
 */
 
 int sum_coins(const int A[], int from, int to )
@@ -47,7 +47,7 @@ void print_comp_tips(const char* format, ...)
         args.push_back(para);
     }
 
-    cout << " ÌìèÒ±È½Ï£º{";
+    cout << " å¤©æ°æ¯”è¾ƒï¼š{";
     assert (0 == args.size() % 2);
     const size_t comp_num = args.size()/2;
     for (size_t i = 0; i < comp_num; ++i)
@@ -66,15 +66,15 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
     if (print_comp_tips("%d%d%d%d%d%d%d%d%d", 1, 2, 3, 4, 5, 6, 7, 8, -1),
             sum_coins(A, 1, 4)==sum_coins(A, 5, 8) )
     {
-        //¼Ù»õ±ÒÖØÁ¿Î´Öª
+        //å‡è´§å¸é‡é‡æœªçŸ¥
         if ( print_comp_tips("%d%d%d%d%d", 1, 9, 10, 11, -1),
             (A[1]+A[9])==sum_coins(A, 10, 11) )
         {
-            //A[12]ÊÇ¼Ù±Ò
+            //A[12]æ˜¯å‡å¸
             if (print_comp_tips("%d%d%d", 1, 12, -1),
-                    A[1] < A[12])//¼Ù±Ò½ÏÖØ
+                    A[1] < A[12])//å‡å¸è¾ƒé‡
                 fake_state = 1;
-            else//¼Ù±Ò½ÏÇá
+            else//å‡å¸è¾ƒè½»
                 fake_state = 0;
             fake_coin = 12;
         }
@@ -83,19 +83,19 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
             if (print_comp_tips("%d%d%d", 10, 11, -1),
                     A[10]==A[11])
             {
-                //A[9]¼Ù±Ò£¬½ÏÖØ
+                //A[9]å‡å¸ï¼Œè¾ƒé‡
                 fake_state = 1;
                 fake_coin = 9;
             }
             else if (A[10]>A[11])
             {
-                //A[11]¼Ù±Ò£¬½ÏÇá
+                //A[11]å‡å¸ï¼Œè¾ƒè½»
                 fake_state = 0;
                 fake_coin = 11;
             }
             else//if (A[10]<A[11])
             {
-                //A[10]¼Ù±Ò£¬½ÏÇá
+                //A[10]å‡å¸ï¼Œè¾ƒè½»
                 fake_state = 0;
                 fake_coin = 10;
             }
@@ -103,19 +103,19 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
         else if (print_comp_tips("%d%d%d", 10, 11, -1),
                  A[10]==A[11])
         {
-            //A[9]¼Ù±Ò£¬½ÏÇá
+            //A[9]å‡å¸ï¼Œè¾ƒè½»
             fake_state = 0;
             fake_coin = 9;
         }
         else if (A[10]>A[11])
         {
-            //A[10]¼Ù±Ò£¬½ÏÖØ
+            //A[10]å‡å¸ï¼Œè¾ƒé‡
             fake_state = 1;
             fake_coin = 10;
         }
         else//if (A[10]<A[11])
         {
-            //A[11]¼Ù±Ò£¬½ÏÖØ
+            //A[11]å‡å¸ï¼Œè¾ƒé‡
             fake_state = 1;
             fake_coin = 11;
         }
@@ -125,7 +125,7 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
         if ( print_comp_tips("%d%d%d%d%d%d%d%d%d", 1, 6, 7, 8, 5, 9, 10, 11, -1),
             (A[1]+sum_coins(A, 6, 8))==(A[5]+sum_coins(A, 9, 11)) )
         {
-            //¼Ù»õ±ÒÖØÁ¿½ÏÖØ
+            //å‡è´§å¸é‡é‡è¾ƒé‡
             if ( print_comp_tips("%d%d%d", 2, 3, -1),
                     A[2]==A[3] )
                 fake_coin = 4;
@@ -138,18 +138,18 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
             if (print_comp_tips("%d%d%d", 1, 9, -1),
                     A[1]==A[9])
             {
-                fake_coin = 5;//¼Ù»õ±ÒÖØÁ¿½ÏÇá
+                fake_coin = 5;//å‡è´§å¸é‡é‡è¾ƒè½»
                 fake_state = 0;
             }
             else
             {
-                fake_coin = 1;//¼Ù»õ±ÒÖØÁ¿½ÏÖØ
+                fake_coin = 1;//å‡è´§å¸é‡é‡è¾ƒé‡
                 fake_state = 1;
             }
         }
         else//if ( (A[1]+Sum_Coin(A, 6, 8)) < (A[5]+Sum_Coin(A, 9, 11)) )
         {
-            //¼Ù»õ±ÒÖØÁ¿½ÏÇá
+            //å‡è´§å¸é‡é‡è¾ƒè½»
             if (print_comp_tips("%d%d%d", 6, 7, -1),
                     A[6]==A[7])
                 fake_coin = 8;
@@ -162,7 +162,7 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
     else if (print_comp_tips("%d%d%d%d%d%d%d%d%d", 1, 6, 7, 8, 5, 9, 10, 11, -1),
              (A[1]+sum_coins(A, 6, 8))==(A[5]+sum_coins(A, 9, 11)) )
     {
-        //¼Ù»õ±ÒÖØÁ¿½ÏÇá
+        //å‡è´§å¸é‡é‡è¾ƒè½»
         if (print_comp_tips("%d%d%d", 2, 3, -1),
                 A[2]==A[3] )
             fake_coin = 4;
@@ -172,7 +172,7 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
     }
     else if ( (A[1]+sum_coins(A, 6, 8)) > (A[5]+sum_coins(A, 9, 11)) )
     {
-        //¼Ù»õ±ÒÖØÁ¿½ÏÖØ
+        //å‡è´§å¸é‡é‡è¾ƒé‡
         if (print_comp_tips("%d%d%d", 6, 7, -1),
                 A[6]==A[7])
             fake_coin = 8;
@@ -184,12 +184,12 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
     else if (print_comp_tips("%d%d%d", 1, 9, -1),
              A[1]==A[9])
     {
-        fake_coin = 5;//¼Ù»õ±ÒÖØÁ¿½ÏÖØ
+        fake_coin = 5;//å‡è´§å¸é‡é‡è¾ƒé‡
         fake_state = 1;
     }
     else
     {
-        fake_coin = 1;//¼Ù»õ±ÒÖØÁ¿½ÏÇá
+        fake_coin = 1;//å‡è´§å¸é‡é‡è¾ƒè½»
         fake_state = 0;
     }
 
@@ -198,7 +198,7 @@ bool find_a_fake_coin(const int A[], int& fake_coin, int& fake_state)
 
 void print_coins(const int pCoins[], int count)
 {
-    cout << "[±àºÅ]ÇáÖØ";
+    cout << "[ç¼–å·]è½»é‡";
     for (int i=1; i<=count; ++i)
     {
         cout << " [" << i << "]"<< pCoins[i];
@@ -216,16 +216,16 @@ int main()
     do
     {
         system("cls");
-        cout << " ¼Ù±ÒÎÊÌâ£º12Ã¶½ğ±ÒÖĞ´æÓĞÒ»¼Ù±Ò£¬ÇÒ²»Öª¼Ù±Ò½ÏÇá»ò½ÏÖØ£¬¸øÒ»ÌìèÒÏŞ³Æ3´ÎÕÒ³öÆäÖĞµÄ¼Ù±Ò²¢ÖªÆäÇáÖØ¡£ÑİÊ¾ÈçÏÂ£º\n";
+        cout << " å‡å¸é—®é¢˜ï¼š12æšé‡‘å¸ä¸­å­˜æœ‰ä¸€å‡å¸ï¼Œä¸”ä¸çŸ¥å‡å¸è¾ƒè½»æˆ–è¾ƒé‡ï¼Œç»™ä¸€å¤©æ°é™ç§°3æ¬¡æ‰¾å‡ºå…¶ä¸­çš„å‡å¸å¹¶çŸ¥å…¶è½»é‡ã€‚æ¼”ç¤ºå¦‚ä¸‹ï¼š\n";
 
-// 		int fake_s = rand()%2;//1 £¬¼Ù±Ò½ÏÖØ£» 0 £¬¼Ù±Ò½ÏÇá
+// 		int fake_s = rand()%2;//1 ï¼Œå‡å¸è¾ƒé‡ï¼› 0 ï¼Œå‡å¸è¾ƒè½»
 // 		int fake_pos = (rand()%COINS_COUNT)+1;
         for (int fake_s = 0; fake_s < 2; ++fake_s)
             for (int fake_pos = 1; fake_pos <= COINS_COUNT; ++ fake_pos)
             {
                 cout << " NO." << (fake_s)*COINS_COUNT + fake_pos << " --- --- --- --- --- --- --- --- --- --- --- ---\n";
-                int fake_coin = -1; //¼Ù±ÒÎ»ÖÃ
-                int fake_state = -1; //1 £¬¼Ù±Ò½ÏÖØ£» 0 £¬¼Ù±Ò½ÏÇá
+                int fake_coin = -1; //å‡å¸ä½ç½®
+                int fake_state = -1; //1 ï¼Œå‡å¸è¾ƒé‡ï¼› 0 ï¼Œå‡å¸è¾ƒè½»
                 for (int i=1; i<=COINS_COUNT; ++i)
                     pCoins[i] = 1;
 
@@ -239,15 +239,15 @@ int main()
                 find_a_fake_coin(pCoins, fake_coin, fake_state);
 
                 assert (-1 != fake_state && -1 != fake_coin);
-                cout << " ¼Ù±ÒÎ»ÖÃ£º" << fake_coin;
+                cout << " å‡å¸ä½ç½®ï¼š" << fake_coin;
                 if ( fake_state==0 )
-                    cout << " ¼Ù±Ò½ÏÇá£¡\n";
+                    cout << " å‡å¸è¾ƒè½»ï¼\n";
                 else //if (1 ==fake_state)
-                    cout << " ¼Ù±Ò½ÏÖØ£¡\n";
+                    cout << " å‡å¸è¾ƒé‡ï¼\n";
                 cout << " --- end ---\n";
             }
 
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while( (c=getch())!=27 );

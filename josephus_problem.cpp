@@ -1,4 +1,4 @@
-
+ï»¿
 #include <iostream>
 #include <vector>
 #include <cstdio>
@@ -12,17 +12,17 @@
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º josephus_problem.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬Ä£ÄâÔ¼Éª·òÎÊÌâµÄÑİÊ¾¡£ÒÔÏÂ²ÉÓÃÁ½ÖÖÊı¾İ½á¹¹ÊµÏÖ£º
-	1. Êı×é£»2. Ñ­»·Á´±í¡£
-	ÕûÌåÉÏ£¬Ñ­»·Á´±íÒªÓÅÓÚÊı×é£¬µ«Êı×éµÄÊµÏÖ¿ÉÄÜ½ÏÒ×ÓÚÀí½âÓë±àÂë¡£
+** æºæ–‡ä»¶ï¼š josephus_problem.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œæ¨¡æ‹Ÿçº¦ç‘Ÿå¤«é—®é¢˜çš„æ¼”ç¤ºã€‚ä»¥ä¸‹é‡‡ç”¨ä¸¤ç§æ•°æ®ç»“æ„å®ç°ï¼š
+	1. æ•°ç»„ï¼›2. å¾ªç¯é“¾è¡¨ã€‚
+	æ•´ä½“ä¸Šï¼Œå¾ªç¯é“¾è¡¨è¦ä¼˜äºæ•°ç»„ï¼Œä½†æ•°ç»„çš„å®ç°å¯èƒ½è¾ƒæ˜“äºç†è§£ä¸ç¼–ç ã€‚
 
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
-// Êı×éÄ£ÄâÔ¼Éª·òÎÊÌâ
+// æ•°ç»„æ¨¡æ‹Ÿçº¦ç‘Ÿå¤«é—®é¢˜
 typedef struct Kill_Man
 {
     int*	men;
@@ -36,12 +36,12 @@ typedef struct Kill_Man
     ~Kill_Man()
     {
         if (men)
-            delete men;
+            delete[] men;
     }
 } Kill_Man;
 
 
-// n Îª×ÜÈËÊı£¬kÎªµÚÒ»¸ö¿ªÊ¼±¨ÊıµÄÈË£¬mÎª³öÁĞÕßº°µ½µÄÊı¡£
+// n ä¸ºæ€»äººæ•°ï¼Œkä¸ºç¬¬ä¸€ä¸ªå¼€å§‹æŠ¥æ•°çš„äººï¼Œmä¸ºå‡ºåˆ—è€…å–Šåˆ°çš„æ•°ã€‚
 void JosephusProblem1(int n, int m, int k)
 {
     Kill_Man	kill_man;
@@ -57,11 +57,11 @@ void JosephusProblem1(int n, int m, int k)
     assert (kill_man.men);
     kill_man.killed_men = 0;
     kill_man.cur_survivors = man_num;
-    //±àºÅ
+    //ç¼–å·
 
     for (int i=0; i<man_num; i++)
     {
-        kill_man.men[i] = i+1;//±àºÅ
+        kill_man.men[i] = i+1;//ç¼–å·
     }
     do
     {
@@ -81,7 +81,7 @@ void JosephusProblem1(int n, int m, int k)
 
         //Kill man
         kill_man.men[sign-1] = -1;
-        cout << ++killed << "	Kill man : "<< sign << endl;//±àºÅ
+        cout << ++killed << "	Kill man : "<< sign << endl;//ç¼–å·
 
         kill_man.killed_men++;
         kill_man.cur_survivors--;
@@ -93,7 +93,7 @@ void JosephusProblem1(int n, int m, int k)
     {
         if (kill_man.men[i] != -1 )
         {
-            //±àºÅ
+            //ç¼–å·
             cout << "	Survivors : "<< kill_man.men[i] << endl;
         }
     }
@@ -101,14 +101,14 @@ void JosephusProblem1(int n, int m, int k)
 }
 
 
-// Ñ­»·Á´±íÄ£ÄâÔ¼Éª·òÎÊÌâ
+// å¾ªç¯é“¾è¡¨æ¨¡æ‹Ÿçº¦ç‘Ÿå¤«é—®é¢˜
 typedef struct LNode
 {
     int data;
     struct LNode *link;
 } LNode, *LinkList;
 
-// n Îª×ÜÈËÊı£¬kÎªµÚÒ»¸ö¿ªÊ¼±¨ÊıµÄÈË£¬mÎª³öÁĞÕßº°µ½µÄÊı¡£
+// n ä¸ºæ€»äººæ•°ï¼Œkä¸ºç¬¬ä¸€ä¸ªå¼€å§‹æŠ¥æ•°çš„äººï¼Œmä¸ºå‡ºåˆ—è€…å–Šåˆ°çš„æ•°ã€‚
 void JosephusProblem2(int n, int m, int k)
 {
     assert (n >= k);
@@ -146,16 +146,16 @@ int main()
     {
         system("cls");
         int all, mark;
-        cout << "\n\n\n	Josephus problem ÑİÊ¾ £¡\n"
-             << "	ÇëÊäÈëÈËÊı£º ";
+        cout << "\n\n\n	Josephus problem æ¼”ç¤º ï¼\n"
+             << "	è¯·è¾“å…¥äººæ•°ï¼š ";
         cin >> all;
-        cout << "	ÇëÊäÈë£¬¼ä¸ô Kill Man Êı£º ";
+        cout << "	è¯·è¾“å…¥ï¼Œé—´éš” Kill Man æ•°ï¼š ";
         cin >> mark;
-        cout << "#1 Êı×éÄ£ÄâÔ¼Éª·òÎÊÌâ£º\n";
+        cout << "#1 æ•°ç»„æ¨¡æ‹Ÿçº¦ç‘Ÿå¤«é—®é¢˜ï¼š\n";
         JosephusProblem1(all, mark, 0);
-        cout << "#2 Ñ­»·Á´±íÄ£ÄâÔ¼Éª·òÎÊÌâ£º\n";
+        cout << "#2 å¾ªç¯é“¾è¡¨æ¨¡æ‹Ÿçº¦ç‘Ÿå¤«é—®é¢˜ï¼š\n";
         JosephusProblem2(all, mark, 0);
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while( (c=getch())!=27 );

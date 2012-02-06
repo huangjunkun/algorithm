@@ -1,4 +1,4 @@
-
+ï»¿
 #include <iostream>
 #include <vector>
 #include <cstdio>
@@ -14,11 +14,11 @@ using namespace std;
 //#define	INT_MAX		32767
 
 /**
-** Ô´ÎÄ¼ş£º shortest_path.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬×î¶ÌÂ·¾¶ÎÊÌâ½â¾ö·½°¸£¬FloydËã·¨ÓëDijkstraËã·¨¡£Ïê¼ûÒÔÏÂ´úÂë¡£
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** æºæ–‡ä»¶ï¼š shortest_path.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œæœ€çŸ­è·¯å¾„é—®é¢˜è§£å†³æ–¹æ¡ˆï¼ŒFloydç®—æ³•ä¸Dijkstraç®—æ³•ã€‚è¯¦è§ä»¥ä¸‹ä»£ç ã€‚
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
 int 	**W = NULL,  **D = NULL;
@@ -27,9 +27,9 @@ char	**DPath = NULL;
 
 typedef	struct G_Chart
 {
-	bool	*flag;	//±êÊ¶¶ÔÓ¦µÄµãÊÇ·ñ±»¼ÆËãÁË¡£
-	int 	**A;	//´æ·Åµã¼¯ºÏÊı¾İ
-	int 	points;	//¼ÇÂ¼¶àÉÙ¸öµã
+	bool	*flag;	//æ ‡è¯†å¯¹åº”çš„ç‚¹æ˜¯å¦è¢«è®¡ç®—äº†ã€‚
+	int 	**A;	//å­˜æ”¾ç‚¹é›†åˆæ•°æ®
+	int 	points;	//è®°å½•å¤šå°‘ä¸ªç‚¹
 
 	G_Chart()
 		: flag(NULL), A(NULL), points(0)
@@ -63,7 +63,7 @@ void Print_W( T **W, int points)
 		for (int j=0; j< points; j++)
 		{/**/
 			if (W[i][j]==INT_MAX)
-				cout << "¡Ş";
+				cout << "âˆ";
 			else
 				cout << W[i][j];
 			cout << "  ";
@@ -85,7 +85,7 @@ void Floyd(int **D, char **DPath, int points)
 			{
 				//D[j][k] = MIN( D[j][k], (D[j][i]+D[i][k]) );
 				if ( D[j][k] > ((__int64)D[j][i]+D[i][k]) )
-				{// ×¢ÒâÒÔÉÏ¼Ó·¨Ğè·ÀÖ¹½á¹ûÒç³ö¡£
+				{// æ³¨æ„ä»¥ä¸ŠåŠ æ³•éœ€é˜²æ­¢ç»“æœæº¢å‡ºã€‚
 					D[j][k] = D[j][i]+D[i][k];
 					DPath[j][k] = DPath[i][k];
 				}
@@ -184,13 +184,13 @@ void Dijkstra( G_Chart& G )//,int s
 			int 	u = DeleteMin(Q, G.flag, G.points);
 			if ( u==-1 )
 			{
-				//cout << "\n	ÕÒ²»µ½×îĞ¡½ÚµãÇé¿ö break \n";
+				//cout << "\n	æ‰¾ä¸åˆ°æœ€å°èŠ‚ç‚¹æƒ…å†µ break \n";
 				break;
 			}
 			for (int j=0; j< G.points; j++)
 			{
 				if ( G.flag[j]==false && ((__int64)Q[u]+G.A[u][j])<Q[j])
-				{	// ×¢ÒâÒÔÉÏ¼Ó·¨Ğè·ÀÖ¹½á¹ûÒç³ö¡£
+				{	// æ³¨æ„ä»¥ä¸ŠåŠ æ³•éœ€é˜²æ­¢ç»“æœæº¢å‡ºã€‚
 					P[j] = u;
 					Decrease(Q, j, Q[u]+G.A[u][j] );//Q[j] = Q[u]+G.A[u][j];
 				}
@@ -201,14 +201,14 @@ void Dijkstra( G_Chart& G )//,int s
 		{
 			G.A[i][s] = G.A[s][i] = Q[i];
 		}
-// 		cout << "\n	  --- ÕÒµ½Ò»Ìõ×î¶ÌÂ·¾¶ ---\n";//
+// 		cout << "\n	  --- æ‰¾åˆ°ä¸€æ¡æœ€çŸ­è·¯å¾„ ---\n";//
 // 		Print_PQ();//
 	}
 }
 
 void Init_G_Chart(int points)
 {
-		//Îª G ÉêÇë¿Õ¼ä
+		//ä¸º G ç”³è¯·ç©ºé—´
 	G.A = new int*[points];
 	G.flag = new bool[points];
 	G.points = points;
@@ -237,30 +237,30 @@ int main()
 		do
 		{
 			system("cls");
-			cout << "\n\n\n	ÇëÊäÈëÉú³ÉÊ÷µÄµãÊı( > 0 ) £º";
+			cout << "\n\n\n	è¯·è¾“å…¥ç”Ÿæˆæ ‘çš„ç‚¹æ•°( > 0 ) ï¼š";
 			cin >> points;
 		} while( points <=0 );
-		//ÎªW ÉêÇë¿Õ¼ä£¬ÇÒ³õÊ¼»¯¡£
+		//ä¸ºW ç”³è¯·ç©ºé—´ï¼Œä¸”åˆå§‹åŒ–ã€‚
 		Init_WD( points);
-		cout << "\n	Ëæ»úÉú³ÉÍ¼µÄÈ¨ÖØ¾ØÕó£º ";
+		cout << "\n	éšæœºç”Ÿæˆå›¾çš„æƒé‡çŸ©é˜µï¼š ";
 		Print_W( D, points );
 		Print_DPath(DPath, points);
 		//
 		Floyd(D, DPath, points);
-		cout << "\n	ÓÉFloydËã·¨ÇóµÃ¸ÃÍ¼µÄ¾àÀë¾ØÕó£º ";
+		cout << "\n	ç”±Floydç®—æ³•æ±‚å¾—è¯¥å›¾çš„è·ç¦»çŸ©é˜µï¼š ";
 		Print_W( D, points );
 		Print_DPath(DPath, points);
 		/**/
 		Init_G_Chart(points);
 		//Print_W( G.A, points );
 		Dijkstra(G);//
-		cout << "\n	ÓÉDijkstraËã·¨ÇóµÃ¸ÃÍ¼µÄ¾àÀë¾ØÕó£º \n";//
+		cout << "\n	ç”±Dijkstraç®—æ³•æ±‚å¾—è¯¥å›¾çš„è·ç¦»çŸ©é˜µï¼š \n";//
 		Print_W( G.A, points );//
 		//Print_PQ();
 
 
 		Delete_Data( G.points );
-		cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+		cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
 	}while( (c=getch())!=27 );
 	return 0;

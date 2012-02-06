@@ -1,4 +1,4 @@
-
+ï»¿
 /*
 Practice 11
 Solving the knapsack problem by the memory function algorithm; the weight and
@@ -16,11 +16,11 @@ value of those items are produce by rand or acquired from the keyboard.
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º knapsack _test.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬±³°üÎÊÌâÓë¼ÇÒä¹¦ÄÜ¡£Ëã·¨ÏêÏ¸½éÉÜÏê¼û¡¶Ëã·¨·ÖÎöÓëÉè¼Æ¡·8.4±³°üÎÊÌâÓë¼ÇÒä¹¦ÄÜ¡£
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** æºæ–‡ä»¶ï¼š knapsack _test.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼ŒèƒŒåŒ…é—®é¢˜ä¸è®°å¿†åŠŸèƒ½ã€‚ç®—æ³•è¯¦ç»†ä»‹ç»è¯¦è§ã€Šç®—æ³•åˆ†æä¸è®¾è®¡ã€‹8.4èƒŒåŒ…é—®é¢˜ä¸è®°å¿†åŠŸèƒ½ã€‚
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
 int**	calcValues = NULL;
@@ -68,26 +68,26 @@ int main()
     do
     {
         system("cls");
-        cout << "\n\n	¶Ô±³°üÎÊÌâÊµÏÖ¼ÇÒä¹¦ÄÜ·½·¨ÑİÊ¾£º£¨ÈçÏÂ£©\n";
-        cout << "	ÇëÊäÈëÎïÆ·ÊıÁ¿M£¬±³°ü³ĞÖØÁ¿N £º";
+        cout << "\n\n	å¯¹èƒŒåŒ…é—®é¢˜å®ç°è®°å¿†åŠŸèƒ½æ–¹æ³•æ¼”ç¤ºï¼šï¼ˆå¦‚ä¸‹ï¼‰\n";
+        cout << "	è¯·è¾“å…¥ç‰©å“æ•°é‡Mï¼ŒèƒŒåŒ…æ‰¿é‡é‡N ï¼š";
         int		M, N;
         cin >> M >> N;
         pValue = new int [M+1];
         pWeight = new int [N+1];
 		assert (pValue && pWeight);
-        //Ëæ»ú³õÊ¼»¯Value £¬Weight
+        //éšæœºåˆå§‹åŒ–Value ï¼ŒWeight
         for (int i=1; i<=M; i++)
         {
             pValue[i] = rand()%20+1;
             pWeight[i] = rand()%(N/2)+1 ;
         }
-        cout << "\n	Ëæ»ú²úÉúÎïÆ·Îª£º£¨ÈçÏÂ£© \n";
+        cout << "\n	éšæœºäº§ç”Ÿç‰©å“ä¸ºï¼šï¼ˆå¦‚ä¸‹ï¼‰ \n";
         for (int i=1; i<=M; i++)
         {
             cout << "	Value[" << i << "] = " << pValue[i]
                  << ",   Weight[" << i << "] = " << pWeight[i] <<endl;
         }
-        //¶¯Ì¬ÉêÇëV[][]¿Õ¼ä
+        //åŠ¨æ€ç”³è¯·V[][]ç©ºé—´
 		calcValues = new int*[M+1];
 		assert (calcValues);
         for (int i=0; i<M+1; i++)
@@ -95,7 +95,7 @@ int main()
             calcValues[i] = new int [N+1];
 			assert (calcValues[i]);
         }
-        //³õÊ¼»¯V[][]
+        //åˆå§‹åŒ–V[][]
         for (int i=0; i<M+1; i++)
             for (int j=0; j<N+1; j++)
             {
@@ -109,12 +109,14 @@ int main()
         MFKnapsack(M,N);
         PrinrCalcValue(calcValues, M, N);
 
-		//ÊÍ·ÅV[][]¿Õ¼ä
+		//é‡Šæ”¾V[][]ç©ºé—´
 		for (int i=0; i<M+1; i++)
 			delete[] calcValues[i];
 		delete[] calcValues;
+		delete[] pWeight;
+		delete[] pValue;
 
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while( (c=getch())!=27 );

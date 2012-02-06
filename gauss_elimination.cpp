@@ -1,27 +1,27 @@
-/***
+ï»¿/***
 Solve a system of n linear equations in n unknows using Gaussian elimination; assume that the coefficient matrix is not singular( if the coefficient matrix is produced by random,  you may verify singular );
 Hints to the solution :
 Step1: Gaussian elimination; page207, BetterGaussElimination
 Step2: Backward substitution;
 Backward substitution algorithm
-for j ¡û n downto 1 do
-      t ¡û 0
-      for k ¡û j +1 to n do
-            t ¡û t + A[j, k] * x[k]
-      x[j] ¡û (A[j, n+1] - t) / A[j, j]
+for j â† n downto 1 do
+      t â† 0
+      for k â† j +1 to n do
+            t â† t + A[j, k] * x[k]
+      x[j] â† (A[j, n+1] - t) / A[j, j]
 
   */
 
 /**
-** Ô´ÎÄ¼ş£º gauss_elimination.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬ÓÃ¸ßË¹ÏûÈ¥·¨Çó½â·½³Ì×é£¬Ïê¼û¡¶Ëã·¨·ÖÎöÓëÉè¼Æ¡·6.2¸ßË¹ÏûÈ¥·¨¡£
-** ÓÃµ½·½³Ì×éµÄ³õµÈ±ä»»£º
-	1. ½»»»·½³Ì×éÖĞÁ½¸ö·½³ÌµÄÎ»ÖÃ£»
-	2. °ÑÒ»¸ö·½³ÌÌæ»»ÎªËüµÄ·ÇÁã±¶£»
-	3. °ÑÒ»¸ö·½³ÌÌæ»»ÎªËüºÍÁíÒ»¸ö·½³Ì±¶ÊıÖ®¼äµÄºÍ»ò²î¡£
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** æºæ–‡ä»¶ï¼š gauss_elimination.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œç”¨é«˜æ–¯æ¶ˆå»æ³•æ±‚è§£æ–¹ç¨‹ç»„ï¼Œè¯¦è§ã€Šç®—æ³•åˆ†æä¸è®¾è®¡ã€‹6.2é«˜æ–¯æ¶ˆå»æ³•ã€‚
+** ç”¨åˆ°æ–¹ç¨‹ç»„çš„åˆç­‰å˜æ¢ï¼š
+	1. äº¤æ¢æ–¹ç¨‹ç»„ä¸­ä¸¤ä¸ªæ–¹ç¨‹çš„ä½ç½®ï¼›
+	2. æŠŠä¸€ä¸ªæ–¹ç¨‹æ›¿æ¢ä¸ºå®ƒçš„éé›¶å€ï¼›
+	3. æŠŠä¸€ä¸ªæ–¹ç¨‹æ›¿æ¢ä¸ºå®ƒå’Œå¦ä¸€ä¸ªæ–¹ç¨‹å€æ•°ä¹‹é—´çš„å’Œæˆ–å·®ã€‚
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
 #include <iostream>
@@ -36,9 +36,9 @@ for j ¡û n downto 1 do
 
 using namespace std;
 
-// ÓÃ²¿·ÖÑ¡Ö÷Ôª·¨ÊµÏÖ¸ßË¹ÏûÈ¥·¨¡£
-// ÊäÈë£º¾ØÕóA[1...n, 1...n], B[1...n]¡£
-// Êä³ö£ºÒ»¸ö´úÌæAµÄÉÏÈı½ÇĞÎµÈ¼Û¾ØÕóÍ¼£¬ÏàÓ¦µÄÓÒ±ßµÄÖµÎ»ÓÚµÚn+1ÁĞÖĞ¡£
+// ç”¨éƒ¨åˆ†é€‰ä¸»å…ƒæ³•å®ç°é«˜æ–¯æ¶ˆå»æ³•ã€‚
+// è¾“å…¥ï¼šçŸ©é˜µA[1...n, 1...n], B[1...n]ã€‚
+// è¾“å‡ºï¼šä¸€ä¸ªä»£æ›¿Açš„ä¸Šä¸‰è§’å½¢ç­‰ä»·çŸ©é˜µå›¾ï¼Œç›¸åº”çš„å³è¾¹çš„å€¼ä½äºç¬¬n+1åˆ—ä¸­ã€‚
 void BetterGaussElimination( double **A, double B[], int n )
 {
     for (int i=1; i<=n; i++)
@@ -47,11 +47,11 @@ void BetterGaussElimination( double **A, double B[], int n )
     }
     for (int i=1; i<=n-1; i++)
     {
-        //Öğ¸öÏûÔª
+        //é€ä¸ªæ¶ˆå…ƒ
         int pivotrow = i;
         for (int j=i+1; j<=n; j++)
         {
-            //±£Ö¤ÏµÊı²»Îª0£¬È¡ÔªËØ¾ø¶ÔÖµ×î´óÖµ
+            //ä¿è¯ç³»æ•°ä¸ä¸º0ï¼Œå–å…ƒç´ ç»å¯¹å€¼æœ€å¤§å€¼
             if ( fabs(A[j][i]) > fabs(A[pivotrow][i]) )
                 pivotrow = j;
         }
@@ -59,7 +59,7 @@ void BetterGaussElimination( double **A, double B[], int n )
         {
             for (int k=i; k<=n+1; k++)
             {
-                //Ö»½»»»·Ç0ÔªËØ A[][k]
+                //åªäº¤æ¢é0å…ƒç´  A[][k]
                 double	temp;
                 temp = A[i][k];
                 A[i][k] = A[pivotrow][k];
@@ -68,11 +68,11 @@ void BetterGaussElimination( double **A, double B[], int n )
         }
         for (int j=i+1; j<=n; j++)
         {
-            //ÖğĞĞÏûÔª
-            double	temp = A[j][i]/A[i][i];//±ÈÀıÒò×Ó
+            //é€è¡Œæ¶ˆå…ƒ
+            double	temp = A[j][i]/A[i][i];//æ¯”ä¾‹å› å­
             for (int k=i; k<=n+1; k++)
             {
-                //µ¥ÁĞÏûÔª
+                //å•åˆ—æ¶ˆå…ƒ
                 A[j][k] = A[j][k]-A[i][k]*temp;
             }
         }
@@ -81,11 +81,11 @@ void BetterGaussElimination( double **A, double B[], int n )
 void BackwardSubstitution(double **A, double *C, int n)
 {
     /*
-    for j ¡û n downto 1 do
-         t ¡û 0
-         for k ¡û j +1 to n do
-               t ¡û t + A[j, k] * x[k]
-         x[j] ¡û (A[j, n+1] - t) / A[j, j]		*/
+    for j â† n downto 1 do
+         t â† 0
+         for k â† j +1 to n do
+               t â† t + A[j, k] * x[k]
+         x[j] â† (A[j, n+1] - t) / A[j, j]		*/
     for (int i=n; i>=1; i--)
     {
         double	t = 0;
@@ -109,15 +109,15 @@ int main()
         system("cls");
 
         double	**A,  *B;
-        cout << "\n\n\n	ÇëÊäÈë¶àÔª·½³ÌÊ½µÄ×éÊı: ";
+        cout << "\n\n\n	è¯·è¾“å…¥å¤šå…ƒæ–¹ç¨‹å¼çš„ç»„æ•°: ";
         int n;
         cin >> n;
 
-        A = new double*[n+1];//ĞĞ
+        A = new double*[n+1];//è¡Œ
         assert (A);
         for (int i=0; i <n+1; i++)
         {
-            //ÁĞ
+            //åˆ—
             A[i] = new double[n+2];
             assert (A[i]);
         }
@@ -144,7 +144,7 @@ int main()
 
         BetterGaussElimination(A, B, n );
 
-        cout <<"\n\n	ÉÏÈı½ÇµÈ¼Û¾ØÕó£¨ÈçÏÂ£©£º\n";
+        cout <<"\n\n	ä¸Šä¸‰è§’ç­‰ä»·çŸ©é˜µï¼ˆå¦‚ä¸‹ï¼‰ï¼š\n";
         for (int i=1; i <n+1; i++)
         {
             int j=1;
@@ -152,25 +152,25 @@ int main()
             {
                 cout << A[i][j] << "	";
             }
-            B[i] = A[i][j-1];//B[]´æ´¢¸÷·½³ÌÊ½ÓÒ±ßµÄÖµ
+            B[i] = A[i][j-1];//B[]å­˜å‚¨å„æ–¹ç¨‹å¼å³è¾¹çš„å€¼
             //cout << B[i];
             cout << endl;
         }
-        //Çó½â·½³Ì×éA[][]--´æ·ÅÏµÊı--µÄ½â£¬½á¹û´æ·ÅB[]
+        //æ±‚è§£æ–¹ç¨‹ç»„A[][]--å­˜æ”¾ç³»æ•°--çš„è§£ï¼Œç»“æœå­˜æ”¾B[]
         BackwardSubstitution(A, B, n);
         /*	*/
-        cout <<"\n\n	ÒÔÉÏ·½³Ì×éµÄ½âÎª£¨ÈçÏÂ£©£º\n";
+        cout <<"\n\n	ä»¥ä¸Šæ–¹ç¨‹ç»„çš„è§£ä¸ºï¼ˆå¦‚ä¸‹ï¼‰ï¼š\n";
         for (int i=1; i <n+1; i++)
         {
             cout << "	X"<< i  <<" = " << B[i];
             cout << endl;
         }
 
-        delete B;
+        delete[] B;
         for (int i=0; i <n+1; i++)
-            delete A[i];
-        delete A;
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+            delete[] A[i];
+        delete[] A;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while( (c=getch())!=27 );

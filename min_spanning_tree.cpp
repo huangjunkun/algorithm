@@ -1,4 +1,4 @@
-
+ï»¿
 #include <iostream>
 #include <vector>
 #include <cstdio>
@@ -11,17 +11,17 @@
 using namespace std;
 
 /**
-** Ô´ÎÄ¼ş£º min_spanning_tree.cpp
-** ¹¦ÄÜËµÃ÷£º
-** ²âÊÔ³ÌĞò£¬×îĞ¡Éú³ÉÊ÷ÎÊÌâCMST½â¾ö·½°¸PrimËã·¨ÓëKruskalËã·¨¡£
-** ×÷Õß£ºjunkun huang  e-mail£ºhuangjunkun@gmail.com
-** ´´½¨ÈÕÆÚ£º2008-11 /
+** æºæ–‡ä»¶ï¼š min_spanning_tree.cpp
+** åŠŸèƒ½è¯´æ˜ï¼š
+** æµ‹è¯•ç¨‹åºï¼Œæœ€å°ç”Ÿæˆæ ‘é—®é¢˜CMSTè§£å†³æ–¹æ¡ˆPrimç®—æ³•ä¸Kruskalç®—æ³•ã€‚
+** ä½œè€…ï¼šjunkun huang  e-mailï¼šhuangjunkun@gmail.com
+** åˆ›å»ºæ—¥æœŸï¼š2008-11 /
 */
 
-// ¶¨ÒåÓÃÓÚPrimËã·¨Çó½â×îĞ¡Éú³ÉÊ÷½á¹¹Ìå£º
-// flag£¬ ±êÖ¾¶ÔÓ¦µÄµãÊÇ·ñ¼ÓÈë×îĞ¡Éú³ÉÊ÷£¨µã£©¼¯ºÏ
-// A[i][j]£¬´æ·Åµãiµ½µãjµÄÈ¨ÖØ
-// points£¬¼ÇÂ¼¸Ã×îĞ¡Éú³ÉÊ÷µÄµãÊı
+// å®šä¹‰ç”¨äºPrimç®—æ³•æ±‚è§£æœ€å°ç”Ÿæˆæ ‘ç»“æ„ä½“ï¼š
+// flagï¼Œ æ ‡å¿—å¯¹åº”çš„ç‚¹æ˜¯å¦åŠ å…¥æœ€å°ç”Ÿæˆæ ‘ï¼ˆç‚¹ï¼‰é›†åˆ
+// A[i][j]ï¼Œå­˜æ”¾ç‚¹iåˆ°ç‚¹jçš„æƒé‡
+// pointsï¼Œè®°å½•è¯¥æœ€å°ç”Ÿæˆæ ‘çš„ç‚¹æ•°
 typedef	struct P_Chart
 {
     bool	*flag;
@@ -29,24 +29,24 @@ typedef	struct P_Chart
     int		points;
 } P_Chart;
 
-// ´æ·ÅÒ»Ìõ±ßµÄÁ½¸öµã
+// å­˜æ”¾ä¸€æ¡è¾¹çš„ä¸¤ä¸ªç‚¹
 typedef	struct Point
 {
     int		P1;
     int		P2;
 } Point;
-// /*¶¨ÒåÓÃÓÚKruskalËã·¨Çó½â×îĞ¡Éú³ÉÊ÷½á¹¹Ìå£º
-// value £¬¼ÇÂ¼±ßµÄÈ¨ÖØ
-// point£¬´æ·Å¸Ã±ßµÄÁ½¸öµã
+// /*å®šä¹‰ç”¨äºKruskalç®—æ³•æ±‚è§£æœ€å°ç”Ÿæˆæ ‘ç»“æ„ä½“ï¼š
+// value ï¼Œè®°å½•è¾¹çš„æƒé‡
+// pointï¼Œå­˜æ”¾è¯¥è¾¹çš„ä¸¤ä¸ªç‚¹
 //  */
 typedef	struct K_Chart
 {
     int		value;
     Point	point;
 } K_Chart;
-//´æ·ÅµãµÄ¼¯ºÏ--ÏòÁ¿
+//å­˜æ”¾ç‚¹çš„é›†åˆ--å‘é‡
 typedef	vector<int> Int_Vec;
-//´æ·Åµã¼¯µÄ¼¯ºÏ--£¨ÏòÁ¿µÄ£©ÏòÁ¿
+//å­˜æ”¾ç‚¹é›†çš„é›†åˆ--ï¼ˆå‘é‡çš„ï¼‰å‘é‡
 typedef vector<Int_Vec>	Int_Vec_Vec;//
 
 Int_Vec_Vec		int_vec_vec;
@@ -62,9 +62,9 @@ void Print_P_Chart(const P_Chart& G, const K_Chart *K );
 
 void Merge( K_Chart *K, K_Chart *TR,int i,int m,int n)
 {
-    // ½«ÓĞĞòµÄK1[i..m]ºÍK1[m+1..n]¹é²¢ÎªÓĞĞòµÄTR[i..n] Ëã·¨10.12
+    // å°†æœ‰åºçš„K1[i..m]å’ŒK1[m+1..n]å½’å¹¶ä¸ºæœ‰åºçš„TR[i..n] ç®—æ³•10.12
     int j,k,l;
-    for (j=m+1,k=i; i <=m&&j<=n; ++k) // ½«K1ÖĞ¼ÇÂ¼ÓÉĞ¡µ½´óµØ²¢ÈëTR
+    for (j=m+1,k=i; i <=m&&j<=n; ++k) // å°†K1ä¸­è®°å½•ç”±å°åˆ°å¤§åœ°å¹¶å…¥TR
     {
         if ( K[i].value < K[j].value )
             TR[k]=K[i++];
@@ -75,20 +75,20 @@ void Merge( K_Chart *K, K_Chart *TR,int i,int m,int n)
     if (i <=m)
         for (l=0; l<=m-i; l++)
         {
-            TR[k+l]=K[i+l]; // ½«Ê£ÓàµÄK1[i..m]¸´ÖÆµ½TR
+            TR[k+l]=K[i+l]; // å°†å‰©ä½™çš„K1[i..m]å¤åˆ¶åˆ°TR
 
         }
     if (j<=n)
         for (l=0; l<=n-j; l++)
         {
-            TR[k+l]=K[j+l]; // ½«Ê£ÓàµÄK1[j..n]¸´ÖÆµ½TR
+            TR[k+l]=K[j+l]; // å°†å‰©ä½™çš„K1[j..n]å¤åˆ¶åˆ°TR
 
         }
 }
 
 void MSort( K_Chart *K1, K_Chart *K2, int s, int t)
 {
-    // ½«K1[s..t]¹é²¢ÅÅĞòÎªK2[s..t]¡£
+    // å°†K1[s..t]å½’å¹¶æ’åºä¸ºK2[s..t]ã€‚
     int m;
     K_Chart *TR2 = new K_Chart[K_i+1];//
     //K_Chart TR2[101];
@@ -96,19 +96,19 @@ void MSort( K_Chart *K1, K_Chart *K2, int s, int t)
         K2[s]=K1[s];
     else
     {
-        m=(s+t)/2; // ½«K1[s..t]Æ½·ÖÎªK1[s..m]ºÍK1[m+1..t]
-        MSort(K1,TR2,s,m); // µİ¹éµØ½«K1[s..m]¹é²¢ÎªÓĞĞòµÄTR2[s..m]
-        MSort(K1,TR2,m+1,t); // µİ¹éµØ½«K1[m+1..t]¹é²¢ÎªÓĞĞòµÄTR2[m+1..t]
-        Merge(TR2,K2,s,m,t); // ½«TR2[s..m]ºÍTR2[m+1..t]¹é²¢µ½K2[s..t]
+        m=(s+t)/2; // å°†K1[s..t]å¹³åˆ†ä¸ºK1[s..m]å’ŒK1[m+1..t]
+        MSort(K1,TR2,s,m); // é€’å½’åœ°å°†K1[s..m]å½’å¹¶ä¸ºæœ‰åºçš„TR2[s..m]
+        MSort(K1,TR2,m+1,t); // é€’å½’åœ°å°†K1[m+1..t]å½’å¹¶ä¸ºæœ‰åºçš„TR2[m+1..t]
+        Merge(TR2,K2,s,m,t); // å°†TR2[s..m]å’ŒTR2[m+1..t]å½’å¹¶åˆ°K2[s..t]
     }
     delete[] TR2;//
 }
-/// ¹¹Ôì×îĞ¡Éú³ÉÊ÷µÄPrimËã·¨
-///	ÊäÈë£º¼ÓÈ¨Á¬Í¨Í¼ G
-///	Êä³ö£ºE £¬×é³É G µÄ×îĞ¡Éú³ÉÊ÷µÄ±ßµÄ¼¯ºÏ
+/// æ„é€ æœ€å°ç”Ÿæˆæ ‘çš„Primç®—æ³•
+///	è¾“å…¥ï¼šåŠ æƒè¿é€šå›¾ G
+///	è¾“å‡ºï¼šE ï¼Œç»„æˆ G çš„æœ€å°ç”Ÿæˆæ ‘çš„è¾¹çš„é›†åˆ
 void Prim( P_Chart& G, P_Chart& E )
 {
-    //³õÊ¼»¯×îĞ¡Éú³ÉÊ÷¶¥µã¼¯ºÏ
+    //åˆå§‹åŒ–æœ€å°ç”Ÿæˆæ ‘é¡¶ç‚¹é›†åˆ
     G.flag[0] = true;
 
     for (int i=0; i < G.points-1; i++)
@@ -141,8 +141,8 @@ void Prim( P_Chart& G, P_Chart& E )
 //Point	Find_i( int point )
 int		Find_i( int point )
 {
-    //²éÕÒµãpoint ÔÚÄÄÒ»¸öµã¼¯¼¯ºÏint_vec_vecµÄÄÄÒ»¸öµã¼¯£¬
-    //²éÕÒ³É¹¦·µ»Ø¸Ãµã¼¯Î»ÖÃ£¬·ñÔò·µ»Ø-1
+    //æŸ¥æ‰¾ç‚¹point åœ¨å“ªä¸€ä¸ªç‚¹é›†é›†åˆint_vec_vecçš„å“ªä¸€ä¸ªç‚¹é›†ï¼Œ
+    //æŸ¥æ‰¾æˆåŠŸè¿”å›è¯¥ç‚¹é›†ä½ç½®ï¼Œå¦åˆ™è¿”å›-1
     for (int i=0; i < int_vec_vec.size(); i++)
         for (int j=0; j< int_vec_vec[i].size(); j++)
         {
@@ -156,7 +156,7 @@ int		Find_i( int point )
 }
 void Print_Vec()
 {
-    //Êä³öËùÓĞµã¼¯int_vec_vec
+    //è¾“å‡ºæ‰€æœ‰ç‚¹é›†int_vec_vec
     for (int i=0; i < int_vec_vec.size(); i++)
     {
         for (int j=0; j< int_vec_vec[i].size(); j++)
@@ -170,9 +170,9 @@ void Print_Vec()
 
 void Kruskal( K_Chart *K, P_Chart& E )
 {
-    /*¹¹Ôì×îĞ¡Éú³ÉÊ÷µÄKruskalËã·¨
-    ÊäÈë£º¼ÓÈ¨Á¬Í¨Í¼ K
-    Êä³ö£ºE £¬×é³É G µÄ×îĞ¡Éú³ÉÊ÷µÄ±ßµÄ¼¯ºÏ */
+    /*æ„é€ æœ€å°ç”Ÿæˆæ ‘çš„Kruskalç®—æ³•
+    è¾“å…¥ï¼šåŠ æƒè¿é€šå›¾ K
+    è¾“å‡ºï¼šE ï¼Œç»„æˆ G çš„æœ€å°ç”Ÿæˆæ ‘çš„è¾¹çš„é›†åˆ */
     for (int i=0; i < E.points; i++)
     {
         E.flag[i] = false;
@@ -241,7 +241,7 @@ void Kruskal( K_Chart *K, P_Chart& E )
                         {
                             int_vec_vec[P1_i].push_back( int_vec_vec[P2_i][i] );
                         }
-                        int_vec_vec.erase(int_vec_vec.begin()+P2_i);//É¾³ıµã¼¯
+                        int_vec_vec.erase(int_vec_vec.begin()+P2_i);//åˆ é™¤ç‚¹é›†
                     }
                     else
                     {
@@ -249,7 +249,7 @@ void Kruskal( K_Chart *K, P_Chart& E )
                         {
                             int_vec_vec[P2_i].push_back( int_vec_vec[P1_i][i] );
                         }
-                        int_vec_vec.erase(int_vec_vec.begin()+P1_i);//É¾³ıµã¼¯
+                        int_vec_vec.erase(int_vec_vec.begin()+P1_i);//åˆ é™¤ç‚¹é›†
                     }
 
                     distance_K += E.A[P1][P2] = E.A[P2][P1] = K[k].value;
@@ -263,10 +263,10 @@ void Kruskal( K_Chart *K, P_Chart& E )
 
     return;
 }
-//ÎªG£¬E £¬KÉêÇë¿Õ¼ä£¬ÇÒ³õÊ¼»¯¡¢¡¢¡¢
+//ä¸ºGï¼ŒE ï¼ŒKç”³è¯·ç©ºé—´ï¼Œä¸”åˆå§‹åŒ–ã€ã€ã€
 void Init_P_Chart(int points)
 {
-    //ÎªG£¬E £¬KÉêÇë¿Õ¼ä
+    //ä¸ºGï¼ŒE ï¼ŒKç”³è¯·ç©ºé—´
     G.A = new int*[points];
     E.A = new int*[points];
     G.flag = new bool[points];
@@ -281,7 +281,7 @@ void Init_P_Chart(int points)
         E.A[i] = new int [points];
         G.flag[i] = E.flag[i] = false;
     }
-    //	//Îª G, E , K³õÊ¼»¯¡¢¡¢¡¢
+    //	//ä¸º G, E , Kåˆå§‹åŒ–ã€ã€ã€
     K_i = 0;
 
     for (int i=0; i < points; i++)
@@ -303,7 +303,7 @@ void Init_P_Chart(int points)
         }
 
 }
-//ÊÍ·ÅÍ¼µÄ¿Õ¼äG £¬E £¬K
+//é‡Šæ”¾å›¾çš„ç©ºé—´G ï¼ŒE ï¼ŒK
 void Delete_Chart(int points)
 {
     for (int i=0; i < points; i++)
@@ -317,7 +317,7 @@ void Delete_Chart(int points)
     delete[] E.A;
 
 }
-//Êä³öÍ¼P, Í¼K
+//è¾“å‡ºå›¾P, å›¾K
 void Print_P_Chart(const P_Chart& G, const K_Chart *K )
 {
     cout << "\n\n";
@@ -327,7 +327,7 @@ void Print_P_Chart(const P_Chart& G, const K_Chart *K )
         for (int j=0; j< G.points; j++)
         {
             if (G.A[i][j]==INT_MAX)
-                cout << "¡Ş" <<"  ";
+                cout << "âˆ" <<"  ";
             else
                 cout << G.A[i][j] <<"  ";
         }
@@ -349,7 +349,7 @@ int main()
     char c;
     do
     {
-        //Çå¿Õ³õÊ¼»¯
+        //æ¸…ç©ºåˆå§‹åŒ–
         int_vec_vec.clear();
         distance_P = 0;
         distance_K = 0;
@@ -357,27 +357,27 @@ int main()
         do
         {
             system("cls");
-            cout << "\n\n\n	ÇëÊäÈëÉú³ÉÊ÷µÄµãÊı( > 0 ) £º";
+            cout << "\n\n\n	è¯·è¾“å…¥ç”Ÿæˆæ ‘çš„ç‚¹æ•°( > 0 ) ï¼š";
             cin >> points;
         }
         while( points <=0 );
-        //ÎªG£¬E ÉêÇë¿Õ¼ä£¬ÇÒ³õÊ¼»¯¡¢¡¢¡¢
+        //ä¸ºGï¼ŒE ç”³è¯·ç©ºé—´ï¼Œä¸”åˆå§‹åŒ–ã€ã€ã€
         Init_P_Chart( points);
         Print_P_Chart( G, K );
 
 
         Prim( G, E );//
-        cout << "\n	ÒÔÉÏÉú³ÉÊ÷ÓÉPrimËã·¨ÇóµÃ×îĞ¡Éú³ÉÊ÷Îª£¨ÈçÏÂ£©£º ";//
+        cout << "\n	ä»¥ä¸Šç”Ÿæˆæ ‘ç”±Primç®—æ³•æ±‚å¾—æœ€å°ç”Ÿæˆæ ‘ä¸ºï¼ˆå¦‚ä¸‹ï¼‰ï¼š ";//
         Print_P_Chart( E,  K );//
-        cout << "	ÒÔÉÏ×îĞ¡Éú³ÉÊ÷Â·¾¶³¤¶È£º " <<  distance_P << endl;//
+        cout << "	ä»¥ä¸Šæœ€å°ç”Ÿæˆæ ‘è·¯å¾„é•¿åº¦ï¼š " <<  distance_P << endl;//
 
         Kruskal( K, E );
-        cout << "\n	ÒÔÉÏÉú³ÉÊ÷ÓÉKruskalËã·¨ÇóµÃ×îĞ¡Éú³ÉÊ÷Îª£¨ÈçÏÂ£©£º ";//
+        cout << "\n	ä»¥ä¸Šç”Ÿæˆæ ‘ç”±Kruskalç®—æ³•æ±‚å¾—æœ€å°ç”Ÿæˆæ ‘ä¸ºï¼ˆå¦‚ä¸‹ï¼‰ï¼š ";//
         Print_P_Chart( E,  K  );
-        cout << "	ÒÔÉÏ×îĞ¡Éú³ÉÊ÷Â·¾¶³¤¶È£º " <<  distance_K << endl;//
+        cout << "	ä»¥ä¸Šæœ€å°ç”Ÿæˆæ ‘è·¯å¾„é•¿åº¦ï¼š " <<  distance_K << endl;//
 
         Delete_Chart(points);
-        cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌĞø£¬EscÍË³ö³ÌĞò!!!" << endl;
+        cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
     }
     while((c=getch())!=27 );

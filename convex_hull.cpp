@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <time.h>
 #include <stdlib.h>
 #include <vector>
@@ -30,21 +30,21 @@ int main()
     cout << "\n=======================================\n";
     ///*
     vector<PointPair>  selPointPairs;
-// --------------- ÂùÁ¦·¨ ------------
+// --------------- è›®åŠ›æ³• ------------
     for (int i=0; i<POINTNUM; i++)
         for (int j=i+1; j<POINTNUM; j++)
         {
             int a=points[j].y-points[i].y;
             int b=points[i].x-points[j].x;
             int c=points[i].x*points[j].y-points[i].y*points[j].x;
-            // ±êÊ¶points[k] ÂäÔÚÁ½µãpoints[i], points[j] ÄÄÒ»±ß.
-            // 0 ±íÊ¾Î´Öª, 1 ±íÊ¾ÓÒ±ß»òÍ¬Ò»ÌõÏßÉÏ£¬ -1 ±íÊ¾×ó±ß.
+            // æ ‡è¯†points[k] è½åœ¨ä¸¤ç‚¹points[i], points[j] å“ªä¸€è¾¹.
+            // 0 è¡¨ç¤ºæœªçŸ¥, 1 è¡¨ç¤ºå³è¾¹æˆ–åŒä¸€æ¡çº¿ä¸Šï¼Œ -1 è¡¨ç¤ºå·¦è¾¹.
             int flag = 0;
             int k = 0;
             for (; k<POINTNUM; k++)
                 if (k != i && k != j)
                 {
-                    // ... points[i] points[j] points[k] ´æÔÚÏàÍ¬µãÎÊÌâ ...
+                    // ... points[i] points[j] points[k] å­˜åœ¨ç›¸åŒç‚¹é—®é¢˜ ...
 
                     int temp = a*points[k].x+b*points[k].y-c;
 #ifdef _DEBUG
@@ -70,7 +70,7 @@ int main()
     cout << "========selPointPairs  ==================\n";
     for_each(selPointPairs.begin(), selPointPairs.end(), PrintPointPair);
     cout << "\n=======================================\n";/*****/
-// --------------- ·ÖÖÎ·¨ ------------
+// --------------- åˆ†æ²»æ³• ------------
     TPoint& p1 = points[0];
     TPoint& pn = points[POINTNUM-1];
     vector<TPoint*>  upPack, downPack;

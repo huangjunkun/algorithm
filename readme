@@ -1,10 +1,10 @@
-�㷨����
+﻿算法描述
 
-����ʹ��C/C++ ʹ��������ʵ�֣�һЩ�㷨��ϣ���ڴ˽�������ѧϰ��
-���㷢�����д������⣬������ʱ��ϵ���ˡ�
-e-mail��huangjunkun@gmail.com
+尝试使用C/C++ 使用描述（实现）一些算法，希望在此交流互相学习。
+若你发现其中存在问题，可以随时联系本人。
+e-mail：huangjunkun@gmail.com
 
-��ӭ������лл��
+欢迎交流，谢谢！
 
 
 ####### 15.
@@ -13,187 +13,187 @@ e-mail��huangjunkun@gmail.com
 
 ####### 13.
 /**
-** Դ�ļ��� find_a_fake_coin.cpp
-** ����˵����
-** ���Գ��򣬼ٱ����⣺�����ɽ�ҡ�3-1000��������һ�ٱң��Ҳ�֪�ٱҽ������أ���һ�����ҳ����еļٱ���֪�����أ�
-	Ҫ��Ƚϴ���Խ��Խ�á�
-** ���³����Է��η����ݹ����ʽ�����������ַ������ַ����ķַ��������߼���һ�������ԣ���Ч�ʲ�һ��������Ч�ʣ�
-** ���ַ� >= �ķַ� >= ���ַ�
-** ����ʵ�֣����Դ����ע��˵����
+** 源文件： find_a_fake_coin.cpp
+** 功能说明：
+** 测试程序，假币问题：有若干金币【3-1000】，存有一假币，且不知假币较轻或较重，用一天枰找出其中的假币且知其轻重，
+	要求比较次数越少越好。
+** 以下程序以分治法，递归的形式求解包括，二分法，三分法和四分法。程序逻辑有一定相似性，但效率不一。整体上效率：
+** 三分法 >= 四分法 >= 二分法
+** 具体实现，详见源码与注释说明。
 
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 12.
 /**
-** Դ�ļ��� find_a_fake_coin_form_12.cpp
-** ����˵����
-** ���Գ��򣬼ٱ����⣺12ö����д���һ�ٱң��Ҳ�֪�ٱҽ������أ���һ�����޳�3���ҳ����еļٱҲ�֪�����ء�
-    �������г����в�ͬ�Ľⷨ����2*12�֡�
+** 源文件： find_a_fake_coin_form_12.cpp
+** 功能说明：
+** 测试程序，假币问题：12枚金币中存有一假币，且不知假币较轻或较重，给一天枰限称3次找出其中的假币并知其轻重。
+    程序罗列出所有不同的解法，共2*12种。
 
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 11.
 /**
-** Դ�ļ��� josephus_problem.cpp
-** ����˵����
-** ���Գ���ģ��Լɪ���������ʾ�����²����������ݽṹʵ�֣�
-	1. ���飻2. ѭ��������
-	�����ϣ�ѭ������Ҫ�������飬�������ʵ�ֿ��ܽ�������������롣
+** 源文件： josephus_problem.cpp
+** 功能说明：
+** 测试程序，模拟约瑟夫问题的演示。以下采用两种数据结构实现：
+	1. 数组；2. 循环链表。
+	整体上，循环链表要优于数组，但数组的实现可能较易于理解与编码。
 
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 10.
 /**
-** Դ�ļ��� gauss_elimination.cpp
-** ����˵����
-** ���Գ����ø�˹��ȥ����ⷽ���飬������㷨��������ơ�6.2��˹��ȥ����
-** �õ�������ĳ��ȱ任��
-	1. �������������������̵�λ�ã�
-	2. ��һ�������滻Ϊ���ķ��㱶��
-	3. ��һ�������滻Ϊ������һ�����̱���֮��ĺͻ�
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： gauss_elimination.cpp
+** 功能说明：
+** 测试程序，用高斯消去法求解方程组，详见《算法分析与设计》6.2高斯消去法。
+** 用到方程组的初等变换：
+	1. 交换方程组中两个方程的位置；
+	2. 把一个方程替换为它的非零倍；
+	3. 把一个方程替换为它和另一个方程倍数之间的和或差。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 9.
 /**
-** Դ�ļ��� knapsack _test.cpp
-** ����˵����
-** ���Գ��򣬱�����������书�ܡ��㷨��ϸ����������㷨��������ơ�8.4������������书�ܡ�
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： knapsack _test.cpp
+** 功能说明：
+** 测试程序，背包问题与记忆功能。算法详细介绍详见《算法分析与设计》8.4背包问题与记忆功能。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 8.
 /**
-** Դ�ļ��� horner_rule.cpp
-** ����˵����
-** ���Գ��򣬻��ɷ������ڼ������ʽֵ��һ�ֹ��ϵ��㷨����ȴʮ�����ź͸�Ч��
-** ���ɷ�����һЩ���õĸ���Ʒ�������ж���ʽP(x)���ڼ���P(a)��ֵ���̲������м����֣�
-	����֯��ΪP(X)����X-a����������������㷨��������ơ�6.5.1���ɷ���
-** ���ڻ��ɷ������http://baike.baidu.com/view/3060869.htm
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： horner_rule.cpp
+** 功能说明：
+** 测试程序，霍纳法则用于计算多项式值的一种古老的算法，但却十分优雅和高效。
+** 霍纳法则还有一些有用的副产品，例如有多项式P(x)，在计算P(a)的值过程产生的中间数字，
+	可组织作为P(X)除以X-a商与余数。详见《算法分析与设计》6.5.1霍纳法则。
+** 关于霍纳法则，详见http://baike.baidu.com/view/3060869.htm
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 7.
 /**
-** Դ�ļ��� binomial_coefficient.cpp
-** ����˵����
-** ���Գ��򣬼������ʽϵ����һ����̬�滮�ⷨӦ�õĵ������ӣ��������⡣
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： binomial_coefficient.cpp
+** 功能说明：
+** 测试程序，计算二项式系数，一个动态规划解法应用的典型例子，简单易理解。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 6.
 /**
-** Դ�ļ��� greatest_common_divisor.cpp
-** ����˵����
-** ���Գ��򣬼�������������С��Լ������ͬ�ⷨ��
-	a. ŷ������㷨 gcd1.
-	b. ����gcd(m, n)��������������㷨gcd2.
-	c. ��ѧ��ļ��㷽��gcd3, �����ӵİ취,������Ч��.
-		1 �ҵ�m����������prime1��
-		2 �ҵ�n����������prime2��
-		3 ��prime1��prime2���ҳ����еĹ�����com_prime��
-		ע�⣺���p������һ����������������prime1��prime2�зֱ����Pm��Pn��
-		��ôӦ�ý�p�ظ�min{Pm, Pn}�Σ�
-		4 ��com_prime��������������ˣ������m, n���Լ����
-		��gcd3�ⷨO_o �����ڵ������̰ɡ���
+** 源文件： greatest_common_divisor.cpp
+** 功能说明：
+** 测试程序，计算两个数的最小公约数，不同解法：
+	a. 欧几里得算法 gcd1.
+	b. 计算gcd(m, n)的连续整数检测算法gcd2.
+	c. 中学里的计算方法gcd3, 相对最复杂的办法,但是有效的.
+		1 找到m的所有质数prime1；
+		2 找到n的所有质数prime2；
+		3 从prime1和prime2中找出所有的公因数com_prime。
+		注意：如果p是其中一个公因数，而且在prime1和prime2中分别出现Pm，Pn次
+		那么应该将p重复min{Pm, Pn}次；
+		4 将com_prime的所有质因数相乘，结果即m, n最大公约数。
+		（gcd3解法O_o 够折腾的求解过程吧。）
 
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 5.
 /**
-** Դ�ļ��� convex_hull.h, convex_hull.cpp
-** ���ܣ�͹������Ľ������, ����������η�.
-** ������ʹ�õ�����֪ʶ:
- P1��P2{(x1, y1), (x2, y2)} => ax + by = c
+** 源文件： convex_hull.h, convex_hull.cpp
+** 功能：凸包问题的解决方案, 蛮力法与分治法.
+** 蛮力法使用到几何知识:
+ P1，P2{(x1, y1), (x2, y2)} => ax + by = c
  => {a = y2-y1, b = x1 - x2, c = x1y2 - y1x2}
- ʹ�ù�ʽax + by = c���жϵ�P3(x3, y3)����{(x1, y1), (x2, y2)}�ı�.
-�����ⷨ���裺
-1. ѭ���������еĵ㣬�ҳ�������P1��P2�ĵ㣬������������
- �������еĵ���ֲ���ֱ��P1P2ͬһ�ߣ��������ϼ���֪ʶ��
-2. �ҳ������������ĵ㣬��ô�����͹�����⡣
+ 使用公式ax + by = c可判断点P3(x3, y3)落在{(x1, y1), (x2, y2)}哪边.
+蛮力解法步骤：
+1. 循环遍历所有的点，找出所有像P1，P2的点，需满足条件：
+ 其他所有的点均分布在直线P1P2同一边，借助以上几何知识。
+2. 找出了所有这样的点，那么就完成凸包问题。
 
-�����������ʱ�临�Ӷ�O(n^3).
+蛮力解决方案时间复杂度O(n^3).
 
-** ���η�ʹ�õ�����֪ʶ:
- {(x1, y1), (x2, y2), (x3, y3)} P1, P2, P3.���S(P1P2P3)Ϊ��������ʽ����ֵ��һ�룬
+** 分治法使用到几何知识:
+ {(x1, y1), (x2, y2), (x3, y3)} P1, P2, P3.面积S(P1P2P3)为以下行列式绝对值的一半，
  |x1 y1 1|
  |x2 y2 1| = x1y2 + x3y1 + x2y3 - x3y2 - x2y1 - x1y3
  |x3 y3 1|
- P3λ��ֱ��P1P2�����ʱ���ñ���ʽΪ��ֵ��
- P3λ��ֱ��P1P2���Ҳ�ʱ���ñ���ʽΪ��ֵ��
- �þ���ֵԽ�󣬼�P3����ֱ��P1P2����Խ��
-���νⷨ���裺
-1. ����X�ᣨ��Y�ᣩ����㼯��S0���õ���С��ֵP1��Pn���������ϰ����°���ͬ�㼯�ϡ�
-2. ���ϰ�Ϊ�����������ϼ���֪ʶ���ҳ��ϰ�����Pmax������P1Pn��Զ�ĵ㣬�Ҳ�����������
-3. ������P1Pmax��PmaxPn�����ϰ����ݹ���ȥֱ���Ҳ����ϰ����㡣�õ��㼯��S1.
-4. �°�����ͬ���õ��㼯��S2.
-5. �ϲ�����S1, S2, �õ�S3��͹�����.
+ P3位于直线P1P2的左侧时，该表达式为正值。
+ P3位于直线P1P2的右侧时，该表达式为负值。
+ 该绝对值越大，即P3就与直线P1P2距离越大。
+分治解法步骤：
+1. 按照X轴（或Y轴）排序点集合S0，得到最小大值P1，Pn，并划分上包，下包不同点集合。
+2. 以上包为例，根据以上几何知识，找出上包顶点Pmax即距离P1Pn最远的点，找不到即结束。
+3. 继续以P1Pmax和PmaxPn构造上包，递归下去直至找不到上包顶点。得到点集合S1.
+4. 下包操作同。得到点集合S2.
+5. 合并集合S1, S2, 得到S3即凸包结果.
 
-���η��������ʱ�临�Ӷ�O(n^2).
-btw ��ϸ���㷨���Բμ�<�㷨���������> 3.������3.3.2͹������ & 4.���η�4.6.2͹������.
-** �㷨ʵ���������Դ�ļ�����.
-** ͹����������:
-	����:�������n>2���㣨�����ߣ��ļ���S��͹������S�е�ĳЩ��Ϊ�����͹����Ρ�
-	͹��������Ϊһ��n����ļ��Ϲ���͹�������⡣
-	���㣺�����κ�һ�����еĵ�Ϊ�˵���߶���˵�����ǲ��������߶ε��е㡣
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+分治法解决方案时间复杂度O(n^2).
+btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问题 & 4.分治法4.6.2凸包问题.
+** 算法实现详见以上源文件代码.
+** 凸包问题描述:
+	定理:任意包含n>2个点（不共线）的集合S的凸包是以S中的某些点为顶点的凸多边形。
+	凸包问题是为一个n个点的集合构造凸包的问题。
+	极点：对于任何一集合中的点为端点的线段来说，它们不是这种线段的中点。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 4.
 /**
-** Դ�ļ��� min_spanning_tree.cpp
-** ����˵����
-** ���Գ�����С����������CMST�������Prim�㷨��Kruskal�㷨��
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： min_spanning_tree.cpp
+** 功能说明：
+** 测试程序，最小生成树问题CMST解决方案Prim算法与Kruskal算法。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 3.
 /**
-** Դ�ļ��� nearest_neighbor_search.cpp
-** ����˵����
-** ���Գ�������������������������������η���������´��롣
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： nearest_neighbor_search.cpp
+** 功能说明：
+** 测试程序，最近点对问题解决方案，蛮力法与分治法。详见以下代码。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 2.
 /**
-** Դ�ļ��� shortest_path.cpp
-** ����˵����
-** ���Գ������·��������������Floyd�㷨��Dijkstra�㷨��������´��롣
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： shortest_path.cpp
+** 功能说明：
+** 测试程序，最短路径问题解决方案，Floyd算法与Dijkstra算法。详见以下代码。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */
 
 ####### 1.
 /**
-** Դ�ļ��� random_list_node.h, random_list_node_test.cpp
-** ���ܣ���������������������ڵ����һ��ָ�����ָ�����������һ���ڵ��������
-** һ��ļ������㷨������ɸù��ܣ���ʱ�临�Ӷ�Ϊ O(n*m)���������㷨�ϸ�Ч�����ʱ�临�Ӷ�ΪO(m).
-** �����������Ҫ����Դ�������顣������������+�������ָ��+�ظ�Դ����NEXTָ�롣
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** ���ڣ�2011-06-10 /
+** 源文件： random_list_node.h, random_list_node_test.cpp
+** 功能：拷贝“随机链表”，即节点带有一个指针可能指向链表随机另一个节点的链表。
+** 一般的简单蛮力算法，可完成该功能，但时间复杂度为 O(n*m)。而以下算法较高效，相比时间复杂度为O(m).
+** 具体操作，需要遍历源链表三遍。包括拷贝链表+复制随机指针+回复源链表NEXT指针。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 日期：2011-06-10 /
 */
 
 ####### 0.
 /**
-** Դ�ļ��� hanoi_tower_test.cpp
-** ����˵����
-** ���Գ��򣬺������ļ��㣨���˴���������ʾ���˹��̡�
-** ���ߣ�junkun huang  e-mail��huangjunkun@gmail.com
-** �������ڣ�2008-11 ǰ /
+** 源文件： hanoi_tower_test.cpp
+** 功能说明：
+** 测试程序，汉若塔的计算（搬运次数）与演示搬运过程。
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
 */

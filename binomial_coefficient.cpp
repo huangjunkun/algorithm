@@ -1,4 +1,4 @@
-
+ï»¿
 #include <iostream>
 #include <cstdio>
 #include <conio.h>
@@ -31,7 +31,7 @@ int main()
 	{
 		system("cls");
 
-		cout << "\n\n\n	ÇëÊäÈë¶þÏîÊ½ÏµÊýC(n,k)µÄn ,k µÄÖµ£º";
+		cout << "\n\n\n	è¯·è¾“å…¥äºŒé¡¹å¼ç³»æ•°C(n,k)çš„n ,k çš„å€¼ï¼š";
 		int		n , k;
 		cin >> n >> k;
 		binomialData = new int*[n+1];
@@ -47,7 +47,7 @@ int main()
 				binomialData[i][j] = 0;
 		}
 
-		cout << "\n	¶þÏîÊ½ÏµÊýC(n,k)µÄÖµ£º" << DoBinomial(n ,k) << endl;
+		cout << "\n	äºŒé¡¹å¼ç³»æ•°C(n,k)çš„å€¼ï¼š" << DoBinomial(n ,k) << endl;
 		for (int i=0; i<=n; i++)
 		{
 			cout << "	";
@@ -60,7 +60,7 @@ int main()
 			delete[] binomialData[i];
 		delete[] binomialData;
 
-		cout << "\n\n	!!!°´ÈÎÒâ¼ü¼ÌÐø£¬EscÍË³ö³ÌÐò!!!" << endl;
+		cout << "\n\n	!!!æŒ‰ä»»æ„é”®ç»§ç»­ï¼ŒEscé€€å‡ºç¨‹åº!!!" << endl;
 
 	}while( (c=getch())!=27 );
 	return 0;
