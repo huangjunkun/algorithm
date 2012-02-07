@@ -8,6 +8,16 @@ class Board;
 
 //---------------------------------------------------------------------------
 
+/**
+** 源文件： queen_problem.cpp, queen_problem.h
+** 功能说明：
+** N皇后问题的解法。应用回溯法求解。
+
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
+*/
+
+
 /// 回溯法实现主要该算法
 
 void solve_problem(int nQ)
@@ -30,8 +40,7 @@ void solve_problem(int nQ)
                 {
                     //若无皇后，条件成立
                     myBoard.placeQueen(row, col); //放皇后
-                    rowStack.push(row);
-                    //入栈以保存该行的具体位置方便之后的继续查找
+                    rowStack.push(row); //入栈以保存该行的具体位置方便之后的继续查找
                     row = 0;
                     col++;
                     break;

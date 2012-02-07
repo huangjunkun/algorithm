@@ -10,6 +10,14 @@ e-mail：huangjunkun@gmail.com
 ####### 15.
 
 ####### 14.
+/**
+** 源文件： queen_problem.cpp, queen_problem.h
+** 功能说明：
+** N皇后问题的解法。应用回溯法求解。
+
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 创建日期：2008-11 前 /
+*/
 
 ####### 13.
 /**
