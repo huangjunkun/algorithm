@@ -19,7 +19,7 @@ e-mail：huangjunkun@gmail.com
 发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，
 而满足回溯条件的某个状态的点称为“回溯点”。
 
-程序结构说明：
+A. solve_problem程序结构说明：
 	1.	先将第一个皇后Q1固定在第一列第一行的位置pos[1][1]。
 	2.	跳至下一列，寻找合理位置摆放皇后，即任意两个皇后都不能处于同一行、同一列或同一斜线上。
 	2.1	若找到合理位置，则记录“回溯点”于栈容器，继续寻找下一列摆放下一皇后的合理位置，
@@ -28,7 +28,9 @@ e-mail：huangjunkun@gmail.com
 	直至回溯到第一列的位置，然后开始步骤3。
 	3.	继续将Q1固定在下一位置pos[x+1][1]，继续开始步骤2，循环直至Q1固定在pos[n+1][1]。
 
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+B. solve_problem2程序结构区别于solve_problem，依次将第一列元素pos[x][1] （x >= n ）作为栈底，进行类似A的递归操作。
+
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -42,7 +44,7 @@ e-mail：huangjunkun@gmail.com
 ** 三分法 >= 四分法 >= 二分法
 ** 具体实现，详见源码与注释说明。
 
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -53,7 +55,7 @@ e-mail：huangjunkun@gmail.com
 ** 测试程序，假币问题：12枚金币中存有一假币，且不知假币较轻或较重，给一天枰限称3次找出其中的假币并知其轻重。
     程序罗列出所有不同的解法，共2*12种。
 
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -65,7 +67,7 @@ e-mail：huangjunkun@gmail.com
 	1. 数组；2. 循环链表。
 	整体上，循环链表要优于数组，但数组的实现可能较易于理解与编码。
 
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -78,7 +80,7 @@ e-mail：huangjunkun@gmail.com
 	1. 交换方程组中两个方程的位置；
 	2. 把一个方程替换为它的非零倍；
 	3. 把一个方程替换为它和另一个方程倍数之间的和或差。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -87,7 +89,7 @@ e-mail：huangjunkun@gmail.com
 ** 源文件： knapsack _test.cpp
 ** 功能说明：
 ** 测试程序，背包问题与记忆功能。算法详细介绍详见《算法分析与设计》8.4背包问题与记忆功能。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -99,7 +101,7 @@ e-mail：huangjunkun@gmail.com
 ** 霍纳法则还有一些有用的副产品，例如有多项式P(x)，在计算P(a)的值过程产生的中间数字，
 	可组织作为P(X)除以X-a商与余数。详见《算法分析与设计》6.5.1霍纳法则。
 ** 关于霍纳法则，详见http://baike.baidu.com/view/3060869.htm
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -108,7 +110,7 @@ e-mail：huangjunkun@gmail.com
 ** 源文件： binomial_coefficient.cpp
 ** 功能说明：
 ** 测试程序，计算二项式系数，一个动态规划解法应用的典型例子，简单易理解。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -128,7 +130,7 @@ e-mail：huangjunkun@gmail.com
 		4 将com_prime的所有质因数相乘，结果即m, n最大公约数。
 		（gcd3解法O_o 够折腾的求解过程吧。）
 
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -169,7 +171,7 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问
 	定理:任意包含n>2个点（不共线）的集合S的凸包是以S中的某些点为顶点的凸多边形。
 	凸包问题是为一个n个点的集合构造凸包的问题。
 	极点：对于任何一集合中的点为端点的线段来说，它们不是这种线段的中点。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -178,7 +180,7 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问
 ** 源文件： min_spanning_tree.cpp
 ** 功能说明：
 ** 测试程序，最小生成树问题CMST解决方案Prim算法与Kruskal算法。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -187,7 +189,7 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问
 ** 源文件： nearest_neighbor_search.cpp
 ** 功能说明：
 ** 测试程序，最近点对问题解决方案，蛮力法与分治法。详见以下代码。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -196,7 +198,7 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问
 ** 源文件： shortest_path.cpp
 ** 功能说明：
 ** 测试程序，最短路径问题解决方案，Floyd算法与Dijkstra算法。详见以下代码。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
 
@@ -206,7 +208,7 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问
 ** 功能：拷贝“随机链表”，即节点带有一个指针可能指向链表随机另一个节点的链表。
 ** 一般的简单蛮力算法，可完成该功能，但时间复杂度为 O(n*m)。而以下算法较高效，相比时间复杂度为O(m).
 ** 具体操作，需要遍历源链表三遍。包括拷贝链表+复制随机指针+回复源链表NEXT指针。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 日期：2011-06-10 /
 */
 
@@ -215,6 +217,8 @@ btw 详细的算法可以参见<算法分析与设计> 3.蛮力法3.3.2凸包问
 ** 源文件： hanoi_tower_test.cpp
 ** 功能说明：
 ** 测试程序，汉若塔的计算（搬运次数）与演示搬运过程。
-** 作者：junkun huang  e-mail：huangjunkun@gmail.com
+** 作者：junkun huang
 ** 创建日期：2008-11 前 /
 */
+
+** 作者：junkun huang  e-mail：huangjunkun@gmail.com **

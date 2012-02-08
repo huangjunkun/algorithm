@@ -17,8 +17,7 @@ class Board;
 发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回再走的技术为回溯法，
 而满足回溯条件的某个状态的点称为“回溯点”。
 
-
-程序结构说明：
+A. solve_problem程序结构说明：
 	1.	先将第一个皇后Q1固定在第一列第一行的位置pos[1][1]。
 	2.	跳至下一列，寻找合理位置摆放皇后，即任意两个皇后都不能处于同一行、同一列或同一斜线上。
 	2.1	若找到合理位置，则记录“回溯点”于栈容器，继续寻找下一列摆放下一皇后的合理位置，
@@ -26,6 +25,8 @@ class Board;
 	2.2	若找不到合理位置，则从栈容器出栈“回溯点”，再寻找下一合理位置，再进行步骤2。
 	直至回溯到第一列的位置，然后开始步骤3。
 	3.	继续将Q1固定在下一位置pos[x+1][1]，继续开始步骤2，循环直至Q1固定在pos[n+1][1]。
+
+B. solve_problem2程序结构区别于solve_problem，依次将第一列元素pos[x][1] （x >= n ）作为栈底，进行类似A的递归操作。
 
 ** 作者：junkun huang  e-mail：huangjunkun@gmail.com
 ** 创建日期：2008-11 前 /
@@ -101,7 +102,7 @@ void solve_problem(int nQ)
         while (col >= 0);   //回到0列
     }
 
-    g_timer.set_end();//截止计时
+    g_timer.set_end(); //截止计时
 
     // 屏幕输出与文件保存！
     myBoard.printResult();
@@ -109,6 +110,66 @@ void solve_problem(int nQ)
 
 }
 
+
+void solve_problem2(int nQ)
+{
+	Board myBoard(nQ);
+	g_timer.set_begin();//开始计时
+	stack<int>	rowStack;
+	int row = 0, col = 0;
+	myBoard.placeQueen(row, col);
+	rowStack.push(row);
+	++col;
+	while (!rowStack.empty() ) 
+	{
+		for (; row < myBoard.nQueen; ++row)
+		{
+			if (!(myBoard.isAttacked(row, col)))
+			{
+				myBoard.placeQueen(row, col);
+				rowStack.push(row);
+				row = 0;
+				++col;
+				break;
+			}				
+		}
+		if (myBoard.nQueen == col)
+		{ // 已寻找N个皇后
+			myBoard.incrementSol(row);
+			myBoard.saveSolution();
+			myBoard.printSolution();
+			row = myBoard.nQueen; //需回溯
+		}
+
+		if (myBoard.nQueen == row)
+		{
+			assert (col > 0 );
+			if (!rowStack.empty())
+			{
+				row = rowStack.top();
+				rowStack.pop();
+			}
+			--col; //退回到前一列重新选择
+			myBoard.removeQueen(row, col); //移去皇后
+			++row;
+
+			if (col == 0 && row < myBoard.nQueen)
+			{ // 回溯至第一列
+				assert (rowStack.empty());
+				rowStack.push(row);
+				myBoard.placeQueen(row, col);
+				row = 0;
+				++col;
+			}
+		}
+	}
+
+	g_timer.set_end(); //截止计时
+	// 屏幕输出与文件保存！
+	myBoard.printResult();
+	myBoard.saveResult();
+
+}
 //---------------------------------------------------------------------------
 void hello()
 {
@@ -152,7 +213,7 @@ int main()
         }
         while(nQ >= 16 || nQ <=0);
 
-        solve_problem(nQ);
+        solve_problem(nQ); // solve_problem2
 
         cout << "\n你是否继续执行操作，请按q(Q)或Esc即退出,其他任意键退回： ";
         c = getch();
