@@ -13,93 +13,83 @@ using namespace std;
 
 //  求赫夫曼编码。
 //---------------------------------------------------------------------------
-int mmin( HuffmanTree t, int i )
+int mmin( HuffmanTree& t, int i )
 {
-    // 函数void select()调用
-    int j, flag;
+    int flag;
     unsigned int k = UINT_MAX; // 取k为不小于可能的值
-    for(j = 1; j<= i; j++)
-        if (t[j].weight<k&&t[j].parent == 0)
+    for(int j = 1; j<= i; j++)
+        if (t[j].weight< k&& t[j].parent == 0)
             k = t[j].weight, flag = j;
     t[flag].parent = 1;
     return flag;
 }
 //---------------------------------------------------------------------------
-void select(HuffmanTree t, int i, int &s1, int &s2)
+void select(HuffmanTree& t, int i, int &s1, int &s2)
 {
     // s1为最小的两个值中序号小的那个
-    int j;
     s1 = mmin(t, i);
     s2 = mmin(t, i);
     if (s1>s2)
     {
-        j = s1;
+        int j = s1;
         s1 = s2;
         s2 = j;
     }
 }
 //---------------------------------------------------------------------------
-void do_huff_code(HuffmanTree &HT, HuffmanCode &HC, vector<unsigned int> vec_int, int n)
-//void HuffmanCoding(HuffmanTree &HT, HuffmanCode &HC, int* w, unsigned int n)
+void do_huff_code()
 {
+	int n = g_codes.size();
     // w存放n个字符的权值(均>0), 构造赫夫曼树HT, 并求出n个字符的赫夫曼编码HC
-    int m, i, s1, s2, start;
-    unsigned c, f;
-    HuffmanTree p;
-    char *cd;
-    if (n<1)
+    if (n < 1)
         return;
-    m = 2*n-1;
-    HT = (HuffmanTree)malloc((m+1)*sizeof(HTNode)); // 0号单元未用
-    for(p = HT+1, i = 1; i<= n; ++i, ++p)
+    int i, m = 2*n-1;
+    //g_huff_tree = (HuffmanTree)malloc((m+1)*sizeof(HTNode));
+	g_huff_tree.resize(m+1); // 0号单元未用
+    for(i = 1; i<= n; ++i)
     {
-        (*p).weight = vec_int[i-1];//
-        (*p).parent = 0;
-        (*p).lchild = 0;
-        (*p).rchild = 0;
+        g_huff_tree[i].weight = g_weights[i-1];//
+        g_huff_tree[i].parent = 0;
+		g_huff_tree[i].lchild = 0;
+        g_huff_tree[i].rchild = 0;
     }
-    for(; i<= m; ++i, ++p)
-        (*p).parent = 0;
+    for(; i<= m; ++i)
+        g_huff_tree[i].parent = 0;
+
     for(i = n+1; i<= m; ++i) // 建赫夫曼树
     {
         // 在HT[1~i-1]中选择parent为0且weight最小的两个结点, 其序号分别为s1和s2
-        select(HT, i-1, s1, s2);
-        HT[s1].parent = HT[s2].parent = i;
-        HT[i].lchild = s1;
-        HT[i].rchild = s2;
-        HT[i].weight = HT[s1].weight+HT[s2].weight;
+		int s1, s2;
+        select(g_huff_tree, i-1, s1, s2);
+        g_huff_tree[s1].parent = g_huff_tree[s2].parent = i;
+        g_huff_tree[i].lchild = s1;
+        g_huff_tree[i].rchild = s2;
+        g_huff_tree[i].weight = g_huff_tree[s1].weight+g_huff_tree[s2].weight;
     }
     // 从叶子到根逆向求每个字符的赫夫曼编码
-    HC = (HuffmanCode)malloc((n+1)*sizeof(char*));
     // 分配n个字符编码的头指针向量([0]不用)
-    huff_code_len_ptr = (int*)malloc((n+1)*sizeof(int));
-
-    cd = (char*)malloc(n*sizeof(char)); // 分配求编码的工作空间
-    cd[n-1] = '\0'; // 编码结束符
+	g_huff_code.resize(n+1);
+	std::string temp;
+	temp.resize(n);
     for(i = 1; i<= n; i++)
     {
         // 逐个字符求赫夫曼编码
-        start = n-1; // 编码结束符位置
-        for(c = i, f = HT[i].parent; f != 0; c = f, f = HT[f].parent)
+        int start = temp.size(); // 编码结束符位置
+        for(unsigned c = i, f = g_huff_tree[i].parent; f != 0;
+			c = f, f = g_huff_tree[f].parent)
             // 从叶子到根逆向求编码
-            if (HT[f].lchild == c)
-                cd[--start] = '0';
+            if (g_huff_tree[f].lchild == c)
+                temp[--start] = '0';
             else
-                cd[--start] = '1';
-        HC[i] = (char*)malloc((n-start)*sizeof(char));
+                temp[--start] = '1';
 
-        huff_code_len_ptr[i]  =  (int)malloc(sizeof(int));
-        huff_code_len_ptr[i]  =  n-start-1;//
-        // 为第i个字符编码分配空间
-        strcpy(HC[i], &cd[start]); // 从cd复制编码(串)到HC
+        g_huff_code[i].assign(temp.begin() + start, temp.end());
     }
-    free(cd); // 释放工作空间
 }
 //---------------------------------------------------------------------------
 void menu()
 {
     system("cls");
-    //system("color 24");
     cout << "\n\n\n\n";
     cout<<"	┌─────────────────────────┐\n"
         <<"	│请选择操作功能以回车结束  0--显示编码内容         │\n"
@@ -138,9 +128,8 @@ int get_weight()
 //---------------------------------------------------------------------------
 int init_huff_code()
 {
-
-    vec_char.clear();
-    vec_int.clear();
+    g_codes.clear();
+    g_weights.clear();
 
     void	print_HuffmanCode();
     char	ch;
@@ -151,24 +140,24 @@ int init_huff_code()
 
     while(ch != 27)
     {
-        unsigned int weight;
-        int		nums;
+        unsigned int weight = 0;
+        int	 nums;
         if ( (nums = get_weight()) != -1 )
             weight  =  nums;
         else
             return 0;
 
-        vec_char.push_back(ch);
-        vec_int.push_back(weight);
-        do_huff_code(huff_tree, huff_code, vec_int, vec_char.size());
+        g_codes.push_back(ch);
+        g_weights.push_back(weight);
+        do_huff_code();
         cout << "		!添加编码字符成功! \n\n";
 
         cout << "请继续输入编码字符（单个）Esc退出：";
         ch  =  getch();
         cout << ch;
-        for(int i = 0; i<vec_char.size(); i++)
+        for(int i = 0; i<g_codes.size(); i++)
         {
-            if (ch == vec_char[i])
+            if (ch == g_codes[i])
             {
                 cout << "\n	添加编码字符失败，字符集中已有" << ch <<"存在！！！" <<endl;
                 system("pause");
@@ -177,17 +166,17 @@ int init_huff_code()
         }
     }
     print_huff_code();
-
     return 1;
 }
+
 //---------------------------------------------------------------------------
 void print_huff_code()
 {
     cout << "\n	  字符  权值  编码	编码长度\n" ;
 
-    for(unsigned int m = 1; m<= vec_char.size(); m++) //static_cast<int>(vec_char_size)
+    for(unsigned int m = 1; m<= g_codes.size(); m++) //static_cast<int>(vec_char_size)
     {
-        cout << "	   "<< vec_char[m-1] <<setw(7)<<vec_int[m-1]<<setw(7)<< huff_code[m]<<setw(7)<<huff_code_len_ptr[m]<<endl;
+        cout << "	   "<< g_codes[m-1] <<setw(7)<<g_weights[m-1]<<setw(7)<< g_huff_code[m]<<setw(7)<<g_huff_code[m].size()<<endl;
     }
     system("pause");
 }
@@ -199,9 +188,9 @@ int	add_huff_code()
     cout << "请输入你要添加的编码字符（单个）Esc退出：";
     ch  =  getch();
     cout << ch;
-    for(int i = 0; i<vec_char.size(); i++)
+    for(int i = 0; i<g_codes.size(); i++)
     {
-        if (ch == vec_char[i])
+        if (ch == g_codes[i])
         {
             cout << "\n	添加编码字符失败，字符集中已有" << ch <<"存在！！！" <<endl;
             system("pause");
@@ -211,7 +200,6 @@ int	add_huff_code()
 
     while(ch != 27)
     {
-
         unsigned int weight;
         int		nums;
         if ( (nums = get_weight()) != -1 )
@@ -219,18 +207,18 @@ int	add_huff_code()
         else
             return 0;
 
-        vec_char.push_back(ch);
-        vec_int.push_back(weight);
+        g_codes.push_back(ch);
+        g_weights.push_back(weight);
 
-        do_huff_code( huff_tree, huff_code, vec_int, vec_char.size() );
+        do_huff_code();
         cout << "		!添加编码字符成功! \n\n";
 
         cout << "请继续输入你要添加的编码字符（单个）Esc退出：";
         ch  =  getch();
         cout << ch;
-        for(int i = 0; i<vec_char.size(); i++)
+        for(int i = 0; i<g_codes.size(); i++)
         {
-            if (ch == vec_char[i])
+            if (ch == g_codes[i])
             {
                 cout << "\n	添加编码字符失败，字符集中已有" << ch <<"存在！！！" <<endl;
                 system("pause");
@@ -253,10 +241,10 @@ int	modify_huff_code()
 	char ch = pre_ch;
     while(ch != 27)
     {
-        for(pos = 0; pos<vec_char.size(); pos++)
-            if (vec_char[pos] == pre_ch)
+        for(pos = 0; pos<g_codes.size(); pos++)
+            if (g_codes[pos] == pre_ch)
                 break;
-        if (pos == vec_char.size())
+        if (pos == g_codes.size())
         {
             cout << "\n抱歉，没有你要修改的编码字符: "<<ch <<endl;
             system("pause");
@@ -265,8 +253,8 @@ int	modify_huff_code()
         cout << "\n请输入正确的编码字符（单个）Esc退出：";
         ch  =  getch();
         cout << ch;
-        for(int i = 0; i<vec_char.size(); i++)
-            if (ch == vec_char[i] && ch != pre_ch)
+        for(int i = 0; i<g_codes.size(); i++)
+            if (ch == g_codes[i] && ch != pre_ch)
             {
                 cout << "\n	修改编码字符失败，字符集中已有" << ch <<"存在！！！" <<endl;
                 system("pause");
@@ -279,9 +267,9 @@ int	modify_huff_code()
         else
             return 0;
 
-        vec_char[pos]  =  ch;
-        vec_int[pos]  =  weight;
-        do_huff_code(huff_tree, huff_code, vec_int, vec_char.size());
+        g_codes[pos]  =  ch;
+        g_weights[pos]  =  weight;
+        do_huff_code();
         cout << "\n		!修改编码字符成功! ";
 
         cout << "\n请继续输入你要修改的编码字符（单个）Esc退出：";
@@ -301,15 +289,14 @@ int	delete_huff_code()
     cout << "请输入你要删除的编码字符（单个）Esc退出：";
     ch  =  getch();
     cout << ch;
-    //cin.get(ch);
-    //cin.ignore(2, '\n');
+
     int		delete_flag  =  0;
     while(ch != 27)
     {
-        for(i = 0; i<vec_char.size(); i++)
-            if (vec_char[i] == ch)
+        for(i = 0; i<g_codes.size(); i++)
+            if (g_codes[i] == ch)
             {
-                vec_char.erase(vec_char.begin()+i);//
+                g_codes.erase(g_codes.begin()+i);//
                 delete_flag  =  1;
                 break;
             }
@@ -319,9 +306,9 @@ int	delete_huff_code()
             system("pause");
             return 0;
         }
-        vec_int.erase(vec_int.begin()+i);
+        g_weights.erase(g_weights.begin()+i);
 
-        do_huff_code(huff_tree, huff_code, vec_int, vec_char.size());
+        do_huff_code();
         cout << "\n		!删除编码字符成功! ";
 
         cout << "\n继续输入你要删除的编码字符（单个）, Esc退出：";
@@ -346,10 +333,10 @@ int	encode_telegra()
     for(int i = 0; i<telegra.size(); i++)
     {
         int		character_exist_flag  =  0;
-        for(int j = 0; j<vec_char.size(); j++)
-            if (telegra[i] == vec_char[j])
+        for(int j = 0; j<g_codes.size(); j++)
+            if (telegra[i] == g_codes[j])
             {
-                telegra_code.append(huff_code[j+1]);
+                telegra_code.append(g_huff_code[j+1]);
                 character_exist_flag  =  1;
             }
         if ( character_exist_flag == 0 )
@@ -368,11 +355,10 @@ int	encode_telegra()
 //---------------------------------------------------------------------------
 int	decode_telegra()
 {
-
     string	telegra_code, str_telegra;
     vector<char>	telegra;
     int		trans_pos = 0;
-    int		HT_length  =  2*vec_char.size();//0号单元未用！
+    int		HT_length  =  2*g_codes.size();//0号单元未用！
     int		character_exist_flag  =  1;
     int		i = 0, j = 0;
 
@@ -383,13 +369,13 @@ int	decode_telegra()
     {
         character_exist_flag  =  1;
         if (telegra_code[trans_pos] == '1')
-            j  =  huff_tree[j].rchild;
+            j  =  g_huff_tree[j].rchild;
         else if (telegra_code[trans_pos] == '0')
-            j  =  huff_tree[j].lchild;
+            j  =  g_huff_tree[j].lchild;
 
-        if (j <=  vec_char.size())
+        if (j <=  g_codes.size())
         {
-            telegra.push_back(vec_char[j-1]);
+            telegra.push_back(g_codes[j-1]);
             j  =  HT_length-1;
             character_exist_flag = 0;
         }
@@ -421,23 +407,24 @@ int auto_huff_code()
     string		str_code;
     int 	char_exist_flag  =  1;
     cout << "请输入你要进行编码的字符串：";
+	cin.ignore(100, '\n');
     getline(cin, str_code, '\n');
     for(int i = 0; i<str_code.size(); i++)
     {
         char_exist_flag  =  1;
-        for(int j = 0; j<vec_char.size(); j++)
-            if (str_code[i] == vec_char[j])
+        for(int j = 0; j<g_codes.size(); j++)
+            if (str_code[i] == g_codes[j])
             {
-                vec_int[j]++;
+                g_weights[j]++;
                 char_exist_flag  =  0;
             }
         if (char_exist_flag == 1)
         {
-            vec_char.push_back(str_code[i]);
-            vec_int.push_back(1);
+            g_codes.push_back(str_code[i]);
+            g_weights.push_back(1);
         }
     }
-    do_huff_code(huff_tree, huff_code, vec_int, vec_char.size());
+    do_huff_code();
     return 1;
 }
 
@@ -447,35 +434,16 @@ void say_goodbye()
     cout << "\n		       !!! GOODBYE, BYE-BYE !!!		\n";
 }
 //---------------------------------------------------------------------------
-void play()
+void do_demo(char which)
 {
-    menu();
-    static int Init_flag  =  0;
-    char	c;
-    do
-    {
-        cin >> c;
-        cin.ignore(100, '\n');
-        if	(c != '1' && Init_flag != 1 && c != '8')
-        {
-            printf("字符编码尚未初始化，请先选择 1--初始化编码 !!! \n");
-            system("pause");
-            menu();
-        }
-
-        else
-            break;
-    }
-    while (c != '1' && Init_flag != 1 && c != '8');
-
-    switch (c)
+    switch (which)
     {
     case '0':
         print_huff_code();
         break;
     case '1':
         init_huff_code();
-        Init_flag  =  1;
+
         break;
     case '2':
         print_huff_code();
@@ -505,30 +473,27 @@ void play()
 
         break;
     case '8':
-        cout << "\n		你是否真的要退出系统，请按Y(y)确认退出, 其他任意键退回： ";
-        cin >> c;
-        cin.ignore(100, '\n');
-        if (c == 'y'||c == 'Y')
-        {
-            say_goodbye();
-            return ;
-        }
+        cout << " ... 退出系统...\n";
+
         break;
     default:
         printf(" \n	您的输入有误，请重新输入选择 !\n");
-
     }
     cout << endl;
-    //return 0;
 }
 //---------------------------------------------------------------------------
 int main()
 {
     do
     {
-        play();
+		menu();
+		char c;
+		cin >> c;
+        do_demo(c);
+		cin.ignore(100, '\n');
     }
-    while (true);
+	while (true);
+	say_goodbye();
     return 0;
 }
 
