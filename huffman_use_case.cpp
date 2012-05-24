@@ -52,9 +52,14 @@ struct test_case
     }
     test_case(const test_case& obj)
     {
+        *this = const_cast<test_case&>(obj);
+    }
+    test_case& operator=(const test_case& obj)
+    {
         wood_all_len = obj.wood_all_len;
         if (part_count < obj.part_count)
         {
+            cout << "part_count < obj.part_count. Should delete, new and copy.\n";
             if (part_len_ptr)
                 delete[] part_len_ptr;
             assert (obj.part_count);
@@ -63,16 +68,16 @@ struct test_case
         }
         else
         {
+            cout << "part_count >= obj.part_count. Just copy.\n";
             memcpy(part_len_ptr, obj.part_len_ptr, sizeof(unsigned) * obj.part_count);
         }
-
-
         part_count = obj.part_count;
+        return *this;
     }
     ~test_case()
     {
         if (part_len_ptr)
-            delete part_len_ptr;
+            delete[] part_len_ptr;
     }
 };
 
@@ -255,6 +260,25 @@ void run_test_case()
 int main()
 {
     using namespace test_namespace;
+    {
+    // test struct test_case.
+    test_case case1;
+    case1.part_count = 10;
+    case1.part_len_ptr = new unsigned[case1.part_count];
+
+    test_case case2;
+    case2.part_count = 15;
+    case2.part_len_ptr = new unsigned[case2.part_count];
+    case2 = case1;
+
+    test_case case3;
+    case3.part_count = 5;
+    case3.part_len_ptr = new unsigned[case3.part_count];
+    case3 = case1;
+
+    cout << "\n\n";
+    }
+
     run_test_case();
 
     /*********/
