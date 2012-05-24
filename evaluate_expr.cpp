@@ -49,7 +49,7 @@ using namespace std;
 double four_operations(double a,char theta,double b);
 char pre_proccess(char a,char b);
 template <class T>
-void out_stack (stack<T> s);
+void out_stack (const stack<T>& s);
 int is_symbol (char c);
 void say_goodbye();
 
