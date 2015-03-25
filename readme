@@ -7,12 +7,15 @@ e-mail：huangjunkun@gmail.com
 欢迎交流，谢谢！
 
 ####### 19.
-
+/**
+** 源文件： project_euler.h project_euler.cpp
+** 功能说明：
+	projecteuler题目的解决方案，详细题目参加https://projecteuler.net/ 网站。
+	
+	===
+*/
 
 ####### 18.
-
-
-####### 17.
 /**
 ** 源文件： test_special_sort.cpp
 ** 功能说明：
@@ -21,13 +24,51 @@ e-mail：huangjunkun@gmail.com
 	姓名集合names，名次集合ranks，按照名次顺序输出她们的名字，要求O(N)时间。解法如下：
 	
 	解法一，不改变原来集合顺序，O(N)时间， O(N)空间。
-	描述： 数组下标相当于姓名索引，新空间已名次顺序记录着姓名索引。
-	
+	描述： ranks数组下标相当于姓名索引，新空间ranks2以名次顺序记录着姓名索引。ranks2数值下标为名次，其值为姓名索引值。
+		for (i = 0; i < N; ++i)
+			ranks2[ranks[i]] = i;
+		for (i = 0; i < N; ++i)
+			print(names[ranks2[i]]);
+		
 	解法二，在位重新排序，改变原来集合顺序，O(N)时间， O(1)空间。
-	描述：每一次swap确定一个的位置，最多总共N次swap能全部定位。
-
+	描述：每一次swap {names, ranks} 确定一个的位置，最多总共N次swap能全部定位。
+		for (i = 0; i < N; ++i)
+			while (i != ranks[i])
+				swap(names[i], names[ranks[i]]);
+				swap(ranks[i], ranks[ranks[i]]);
+		for (i = 0; i < N; ++i)
+			print(names[i]);
 	===
 */
+	
+####### 17.
+/**
+** 源文件： huffman_use_cace.cpp
+** 功能介绍：
+	来自Google groups论坛讨论，转：http://groups.google.com/group/pongba/t/bf95272e7543d0aa
+	把一块长度为L的木棒切成N块，每段的大小必须为a1,a2,…,an，每一次切木棒的代价为当前木棒的长度，
+	完成切割任务的最小代价？
+	Input
+	首先输入T，有T个测试用例
+	每个测试用例输入两行
+	第一行整数L和N。接下来一行是N个数表示每一段的木棒长度。
+	Output
+	求完成任务的最小代价
+	Sample Input
+	2
+	10 4
+	1 2 3 4
+	306 8
+	120 37 42 42 32 2 7 24
+	Sample Output
+	19
+	785
+	
+	反过来想每次合并是两段长度之和。于是就变成了Huffman问题了。
+	解释一下样例一，10分割为4和6，代价为10，6分割为3和3，代价为6，3分割为1和2，代价为3。
+	总代价为10+6+3，即Huffman树中非叶节点的 权值和。
+*/
+
 ####### 16.
 
 /**
