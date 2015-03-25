@@ -10,8 +10,17 @@ using namespace std;
 
 void project_euler_run()
 {
-    cout << "problem_6=" << problem_6(10) << "\n";
-    cout << "problem_6=" << problem_6(100) << "\n";
+    cout << (int)'0' << ", " << (int)'1' << "\n";
+    cout << "problem_8_2=" << problem_8_2(4) << "\n";
+    cout << "problem_8_2=" << problem_8_2(13) << "\n";
+    cout << "problem_8_2=" << problem_8_2(11) << "\n";
+    cout << "problem_8=" << problem_8(4) << "\n";
+    cout << "problem_8=" << problem_8(13) << "\n";
+    cout << "problem_8=" << problem_8(11) << "\n";
+//    cout << "problem_7=" << problem_7(6) << "\n";
+//    cout << "problem_7=" << problem_7(10001) << "\n";
+//    cout << "problem_6=" << problem_6(10) << "\n";
+//    cout << "problem_6=" << problem_6(100) << "\n";
 //    cout << "problem_5=" << problem_5(20) << "\n";
 //    cout << "problem_5=" << problem_5(10) << "\n";
     //cout << "problem_4=" << problem_4(99) << "\n";
