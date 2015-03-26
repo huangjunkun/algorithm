@@ -10,13 +10,23 @@ using namespace std;
 
 void project_euler_run()
 {
-    cout << (int)'0' << ", " << (int)'1' << "\n";
-    cout << "problem_8_2=" << problem_8_2(4) << "\n";
-    cout << "problem_8_2=" << problem_8_2(13) << "\n";
-    cout << "problem_8_2=" << problem_8_2(11) << "\n";
-    cout << "problem_8=" << problem_8(4) << "\n";
-    cout << "problem_8=" << problem_8(13) << "\n";
-    cout << "problem_8=" << problem_8(11) << "\n";
+
+    cout << "problem_11=" << problem_11(4) << "\n";
+//    cout << "problem_10=" << problem_10(0) << "\n";
+//    cout << "problem_10=" << problem_10(1) << "\n";
+//    cout << "problem_10=" << problem_10(2) << "\n";
+//    cout << "problem_10=" << problem_10(10) << "\n";
+//    cout << "problem_10=" << problem_10(2000000) << "\n";
+//    cout << "problem_9=" << problem_9(12) << "\n";
+//    cout << "problem_9=" << problem_9(1000) << "\n";
+//    cout << "problem_9=" << problem_9(1001) << "\n";
+//    cout << (int)'0' << ", " << (int)'1' << "\n";
+//    cout << "problem_8_2=" << problem_8_2(4) << "\n";
+//    cout << "problem_8_2=" << problem_8_2(13) << "\n";
+//    cout << "problem_8_2=" << problem_8_2(11) << "\n";
+//    cout << "problem_8=" << problem_8(4) << "\n";
+//    cout << "problem_8=" << problem_8(13) << "\n";
+//    cout << "problem_8=" << problem_8(11) << "\n";
 //    cout << "problem_7=" << problem_7(6) << "\n";
 //    cout << "problem_7=" << problem_7(10001) << "\n";
 //    cout << "problem_6=" << problem_6(10) << "\n";

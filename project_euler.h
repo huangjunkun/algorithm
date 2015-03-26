@@ -10,8 +10,356 @@
 
 using namespace std;
 
+bool is_palindromic_number(unsigned long value);
+long long gcd(long long m, long long n);
+long long lcm(long long m, long long n);
+bool is_prime_number(unsigned long long n);
 
 
+unsigned long problem_11(unsigned arg)
+{
+    if (arg > 20)
+    {
+        return -1;
+    }
+    const unsigned grid_num[20][20] = {{8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8}, \
+{49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, }, \
+{81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65}, \
+{52, 70, 95, 23, 4, 60, 11, 42, 69, 24, 68, 56, 1, 32, 56, 71, 37, 2, 36, 91}, \
+{22, 31, 16, 71, 51, 67, 63, 89, 41, 92, 36, 54, 22, 40, 40, 28, 66, 33, 13, 80}, \
+{24, 47, 32, 60, 99, 3, 45, 2, 44, 75, 33, 53, 78, 36, 84, 20, 35, 17, 12, 50}, \
+{32, 98, 81, 28, 64, 23, 67, 10, 26, 38, 40, 67, 59, 54, 70, 66, 18, 38, 64, 70}, \
+{67, 26, 20, 68, 2, 62, 12, 20, 95, 63, 94, 39, 63, 8, 40, 91, 66, 49, 94, 21}, \
+{24, 55, 58, 5, 66, 73, 99, 26, 97, 17, 78, 78, 96, 83, 14, 88, 34, 89, 63, 72}, \
+{21, 36, 23, 9, 75, 0, 76, 44, 20, 45, 35, 14, 0, 61, 33, 97, 34, 31, 33, 95}, \
+{78, 17, 53, 28, 22, 75, 31, 67, 15, 94, 3, 80, 4, 62, 16, 14, 9, 53, 56, 92}, \
+{16, 39, 5, 42, 96, 35, 31, 47, 55, 58, 88, 24, 0, 17, 54, 24, 36, 29, 85, 57}, \
+{86, 56, 0, 48, 35, 71, 89, 7, 5, 44, 44, 37, 44, 60, 21, 58, 51, 54, 17, 58}, \
+{19, 80, 81, 68, 5, 94, 47, 69, 28, 73, 92, 13, 86, 52, 17, 77, 4, 89, 55, 40}, \
+{4, 52, 8, 83, 97, 35, 99, 16, 7, 97, 57, 32, 16, 26, 26, 79, 33, 27, 98, 66}, \
+{88, 36, 68, 87, 57, 62, 20, 72, 3, 46, 33, 67, 46, 55, 12, 32, 63, 93, 53, 69}, \
+{4, 42, 16, 73, 38, 25, 39, 11, 24, 94, 72, 18, 8, 46, 29, 32, 40, 62, 76, 36}, \
+{20, 69, 36, 41, 72, 30, 23, 88, 34, 62, 99, 69, 82, 67, 59, 85, 74, 4, 36, 16}, \
+{20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54}, \
+{1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48}};
+    // left, right
+    unsigned long max_product = 0;
+    unsigned long product = 0;
+    for (size_t i = 0; i < 20; ++i)
+    {
+        product = 0;
+        for (size_t j = 0; j < 20 - arg; ++j)
+        {
+            size_t z;
+            if (product == 0)
+            {
+                product = 1;
+                z = 0;
+            }
+            else
+            {
+                z = arg-1;
+            }
+            for (; z < arg; ++z)
+            {
+                if (grid_num[i][j+z] == 0)
+                {
+                    // 遇到0，则直接停止计算，并且跳至0后面。
+                    product = 0;
+                    j += z;
+                    break;
+                }
+                else
+                {
+                    product *= (grid_num[i][j+z]);
+                }
+            }
+            if(product > max_product)
+            {
+                max_product = product;
+            }
+            if (product != 0)
+            {
+                product /= (grid_num[i][j]);
+                /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
+            }
+        }
+    }
+    // up, down
+    for (size_t i = 0; i < 20; ++i)
+    {
+        product = 0;
+        for (size_t j = 0; j < 20 - arg; ++j)
+        {
+            size_t z;
+            if (product == 0)
+            {
+                product = 1;
+                z = 0;
+            }
+            else
+            {
+                z = arg-1;
+            }
+            for (; z < arg; ++z)
+            {
+                if (grid_num[j+z][i] == 0)
+                {
+                    // 遇到0，则直接停止计算，并且跳至0后面。
+                    product = 0;
+                    j += z;
+                    break;
+                }
+                else
+                {
+                    product *= (grid_num[j+z][i]);
+                }
+            }
+            if(product > max_product)
+            {
+                max_product = product;
+            }
+            if (product != 0)
+            {
+                product /= (grid_num[j][i]);
+                /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
+            }
+        }
+    }
+    // 1. diagonally
+   for (size_t i = (arg-1); i < 20; ++i)
+    {
+        product = 0;
+        size_t dec_i = i;
+        for (size_t j = 0; j <= (i-(arg-1)); ++j, --dec_i)
+        {
+            size_t z;
+            if (product == 0)
+            {
+                product = 1;
+                z = 0;
+            }
+            else
+            {
+                z = arg-1;
+            }
+            for (; z < arg; ++z)
+            {
+                if (grid_num[dec_i-z][j+z] == 0)
+                {
+                    // 遇到0，则直接停止计算，并且跳至0后面。
+                    product = 0;
+                    dec_i -= z;
+                    j += z;
+                    break;
+                }
+                else
+                {
+                    product *= (grid_num[dec_i-z][j+z]);
+                }
+            }
+            if(product > max_product)
+            {
+                max_product = product;
+            }
+            if (product != 0)
+            {
+                product /= (grid_num[dec_i][j]);
+                /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
+            }
+        }
+    }
+    // 2. diagonally
+    for (size_t i = (arg-1); i < 20; ++i)
+    {
+        product = 0;
+        size_t dec_i = i;
+        for (size_t j = 0; j <= (i-(arg-1)); ++j, --dec_i)
+        {
+            size_t z;
+            if (product == 0)
+            {
+                product = 1;
+                z = 0;
+            }
+            else
+            {
+                z = arg-1;
+            }
+            for (; z < arg; ++z)
+            {
+                if (grid_num[j+z][dec_i-z] == 0)
+                {
+                    // 遇到0，则直接停止计算，并且跳至0后面。
+                    product = 0;
+                    dec_i -= z;
+                    j += z;
+                    break;
+                }
+                else
+                {
+                    product *= (grid_num[j+z][dec_i-z]);
+                }
+            }
+            if(product > max_product)
+            {
+                max_product = product;
+            }
+            if (product != 0)
+            {
+                product /= (grid_num[j][dec_i]);
+                /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
+            }
+        }
+    }
+    // 3. diagonally
+    for (size_t i = 0; i < (20 - arg); ++i)
+    {
+        product = 0;
+        size_t inc_i = i;
+        for (size_t j = 0; j < (20-i-arg); ++j, ++inc_i)
+        {
+            size_t z;
+            if (product == 0)
+            {
+                product = 1;
+                z = 0;
+            }
+            else
+            {
+                z = arg-1;
+            }
+            for (; z < arg; ++z)
+            {
+                if (grid_num[inc_i+z][j+z] == 0)
+                {
+                    // 遇到0，则直接停止计算，并且跳至0后面。
+                    product = 0;
+                    inc_i += z;
+                    j += z;
+                    break;
+                }
+                else
+                {
+                    product *= (grid_num[inc_i+z][j+z]);
+                }
+            }
+            if(product > max_product)
+            {
+                max_product = product;
+            }
+            if (product != 0)
+            {
+                product /= (grid_num[inc_i][j]);
+                /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
+            }
+        }
+    }
+    // 4. diagonally
+    for (size_t i = 0; i < (20 - arg); ++i)
+    {
+        product = 0;
+        size_t inc_i = i;
+        for (size_t j = 0; j < (20-i-arg); ++j, ++inc_i)
+        {
+            size_t z;
+            if (product == 0)
+            {
+                product = 1;
+                z = 0;
+            }
+            else
+            {
+                z = arg-1;
+            }
+            for (; z < arg; ++z)
+            {
+                if (grid_num[j+z][inc_i+z] == 0)
+                {
+                    // 遇到0，则直接停止计算，并且跳至0后面。
+                    product = 0;
+                    inc_i += z;
+                    j += z;
+                    break;
+                }
+                else
+                {
+                    product *= (grid_num[j+z][inc_i+z]);
+                }
+            }
+            if(product > max_product)
+            {
+                max_product = product;
+            }
+            if (product != 0)
+            {
+                product /= (grid_num[j][inc_i]);
+                /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
+            }
+        }
+    }
+    return max_product;
+}
+unsigned long long problem_10(unsigned arg)
+{
+    if (arg < 2)
+        return 0;
+
+    unsigned long long sum = 2;// 2 the first prime
+    for (size_t i = 3; i < arg; i += 2)// 3 the secpnd prime
+    {
+        if (is_prime_number(i))
+        {
+            sum += i;
+        }
+    }
+    return sum;
+}
+
+unsigned long problem_9(unsigned arg)
+{
+////Without programming:
+////
+////a= 2mn; b= m^2 -n^2; c= m^2 + n^2;
+////a + b + c = 1000;
+////
+////2mn + (m^2 -n^2) + (m^2 + n^2) = 1000;
+////2mn + 2m^2 = 1000;
+////2m(m+n) = 1000;
+////m(m+n) = 500;
+////
+////m>n;
+////
+////m= 20; n= 5;
+////
+////a= 200; b= 375; c= 425;
+    assert(arg != 0);
+    unsigned a = 1, b = 1, c = 1;
+    unsigned max_a = arg / 3, max_b = 2* arg / 3, max_c = arg;
+    for (a = 1; a < max_a; ++a)
+    {
+        for (b = a + 1; b < max_b; ++b)
+        {
+            for (; ; )
+            {
+                unsigned long value = a*a + b*b;
+                c = sqrt(value);
+                if (c*c == value && (a + b + c) == arg)
+                {
+                    cout << "relust a=" << a << ", b=" << b << ", c=" << c << "\n";
+                    return (a * b * c);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+        }
+    }
+    cout << "none result.\n";
+    return 0;
+}
 unsigned long long problem_8_2(unsigned arg)
 {
     const char str_1000_digit_num[1001] = "73167176531330624919225119674426574742355349194934\
@@ -38,7 +386,7 @@ unsigned long long problem_8_2(unsigned arg)
     if (arg > 1000 || arg == 0)
         return -1;
 
-    unsigned long long ret = 0;
+    unsigned long long max_product = 0;
     unsigned long long product = 0;
     std::string MAX_STR;
     unsigned long long MAX_RET = 1;
@@ -68,7 +416,7 @@ unsigned long long problem_8_2(unsigned arg)
         {
             if (str_1000_digit_num[i+j] == '0')
             {
-                // 遇到0，则直接停止计算，并且i跳至0后面。
+                // 遇到0，则直接停止计算，并且跳至0后面。
                 product = 0;
                 i += j;
                 break;
@@ -78,9 +426,9 @@ unsigned long long problem_8_2(unsigned arg)
                 product *= (str_1000_digit_num[i+j]-'0');
             }
         }
-        if(product > ret)
+        if(product > max_product)
         {
-            ret = product;
+            max_product = product;
         }
         if (product != 0)
         {
@@ -88,7 +436,7 @@ unsigned long long problem_8_2(unsigned arg)
             /// 为下一次计算做准备，只需除去首元素再乘上（下一次计算的）末元素。
         }
     }
-    return ret;
+    return max_product;
 }
 
 
@@ -225,7 +573,7 @@ unsigned long long problem_6(unsigned arg)
     return std::abs(sum2 - sum1);
 }
 //  求两数的最大公约数
-long long gcd1(long long m, long long n)
+long long gcd(long long m, long long n)
 {
     assert (m>0 && n>0);
     if (m < n)
@@ -247,7 +595,7 @@ long long gcd1(long long m, long long n)
 // 公式法： 最小公倍数 × 最大公约数 = 乘积
 long long lcm(long long m, long long n)
 {
-    return (m*n/gcd1(m, n));
+    return (m*n/gcd(m, n));
 }
 
 unsigned long long problem_5(unsigned arg)
