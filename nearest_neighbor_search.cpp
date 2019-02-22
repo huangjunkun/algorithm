@@ -169,10 +169,10 @@ void Comp_CP(const Points& points, Closest_Pair& closest_pair, int	mid, int mid_
     int		distance = sqrt( closest_pair.distance );
 
     i = mid;
-    while( i >= 0 && points.p_pair[i].x > (mid_value-distance) )
+    while( i >= 0 && points.p_pair[i].x >= (mid_value-distance) )
     {
-        j = mid;
-        while( points.p_pair[++j].x < (mid_value+distance) && j < points.pair_nums )
+        j = i + 1;
+        for(; points.p_pair[j].x <= (mid_value+distance) && j < points.pair_nums; ++j)
         {
             if( points.p_pair[j].y > (points.p_pair[i].y+distance) ||
                     points.p_pair[j].y < (points.p_pair[i].y-distance) )
@@ -199,7 +199,7 @@ void Comp_CP(const Points& points, Closest_Pair& closest_pair, int	mid, int mid_
 
 void Divide_and_Conquer(const Points& points, Closest_Pair& closest_pair, int from, int to)
 {
-    if( (to-from+1) <4 )
+    if( (to-from) <4 )
     {
         /*
         if( (to-from)==1 )
@@ -267,7 +267,7 @@ int	main()
         //蛮力法求解
         cout << "\n\n--- 蛮力法求解 ---\n";
         closest_pair.distance = ULONG_MAX;//MAX_SIZE
-        Brute_Force(points, closest_pair, 0, points.pair_nums-1 );
+        Brute_Force(points, closest_pair, 0, points.pair_nums );
         closest_pair.distance = sqrt( closest_pair.distance );
         Print_Points( cout,  points, closest_pair );
 
@@ -277,7 +277,7 @@ int	main()
         //分治法求解
         cout << "\n\n--- 分治法求解 ---\n";
         closest_pair.distance = ULONG_MAX;//MAX_SIZE
-        Divide_and_Conquer(points, closest_pair, 0, points.pair_nums-1 );
+        Divide_and_Conquer(points, closest_pair, 0, points.pair_nums );
         closest_pair.distance = sqrt( closest_pair.distance );
         Print_Points( cout,  points, closest_pair );
         delete[] points.p_pair;
